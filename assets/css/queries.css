@@ -352,9 +352,9 @@
         -o-transform: none;
         -webkit-transform: none;
         transform: none;
-        -moz-box-shadow: 0 -1px 0 0 #ff1d8d;
-        -webkit-box-shadow: 0 -1px 0 0 #ff1d8d;
-        box-shadow: 0 -1px 0 0 #ff1d8d;
+        -moz-box-shadow: 0 -1px 0 0 var(--color-primary);
+        -webkit-box-shadow: 0 -1px 0 0 var(--color-primary);
+        box-shadow: 0 -1px 0 0 var(--color-primary);
     }
 
     .box-hover {

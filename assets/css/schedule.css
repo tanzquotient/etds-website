@@ -5,14 +5,14 @@
 	overflow: hidden;
 	margin: 0 0 2em;
 	font-weight: 300;
-	
+
 }
 
 /* Nav */
 .tabs nav {
 	text-align: center;
 	background-color:transparent;
-	margin-top: -1px; 
+	margin-top: -1px;
 }
 
 .tabs nav ul {
@@ -34,11 +34,11 @@
     -o-transition: all 0.2s ease-in-out 0.2s;
     -webkit-transition: all 0.2s ease-in-out 0.2s;
     transition: all 0.2s ease-in-out 0.2s
-	
+
 }
 
 .tabs nav ul li :hover {
-    background: #0c59d8;
+    background: var(--color-contrast);
     -moz-transition: all 0.2s ease-in-out 0.2s;
     -o-transition: all 0.2s ease-in-out 0.2s;
     -webkit-transition: all 0.2s ease-in-out 0.2s;
@@ -47,7 +47,7 @@
 
 .tabs nav li.tab-current {
 
-	background:#0c59d8;
+	background:var(--color-contrast);
 }
 
 .tabs nav a {
@@ -137,7 +137,7 @@
 /* Example media queries */
 
 @media screen and (max-width: 52.375em) {
-	
+
 
 	.tabs nav a:before {
 		margin-right: 0;
@@ -156,5 +156,5 @@
 		border-right: none;
 	}
 
-	
+
 }

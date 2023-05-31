@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Rubik+Burned&effect=fire-animation);
 /* 	++++ Reset ++++
 	++++ Preloader ++++
 	++++ Home page ++++
@@ -18,6 +19,7 @@
 /****************************/
 /** Reset **/
 /****************************/
+
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
@@ -81,13 +83,17 @@ a:focus {
 }
 
 h1 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Rubik Burned', 'Oswald', sans-serif;
     color: #fff;
     font-size: 2.5em;
     font-weight: 700;
     letter-spacing: 0.3em;
-    padding-left: 0.3em;
+    padding: 0 0.5em 0 0.8em;
     text-transform: uppercase;
+}
+
+h1:first-of-type {
+    padding-top: 1em;
 }
 
 h2 {
@@ -118,18 +124,18 @@ h6 {
 }
 
 p {
-    color: #fff;
+    color: var(--color-white);
     font-size: 1em;
     line-height: 1.6em;
 }
 
 p a {
-    color: #ff1d8d;
+    color: var(--color-tertiary);
     transition: color 0.5s;
 }
 
 p a:hover {
-    color: #fff;
+    color: var(--color-white);
 }
 
 .right-align {
@@ -141,7 +147,7 @@ p a:hover {
 }
 
 .left-align a, .accordion a {
-    color: #ff1d8d;
+    color: var(--color-primary);
     transition: color 0.5s;
 }
 
@@ -179,7 +185,7 @@ p a:hover {
 }
 
 .pink {
-    color: #ff1d8d;
+    color: var(--color-primary);
 }
 
 /****************************/
@@ -549,17 +555,17 @@ body {
 }
 
 .navbar-default .navbar-nav > li.active > a {
-    color: #0c59d8;
+    color: var(--color-contrast);
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background: none;
-    color: #0c59d8;
+    color: var(--color-contrast);
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: transparent;
-    color: #0c59d8;
+    color: var(--color-contrast);
 }
 
 .dropdown-content {
@@ -604,7 +610,7 @@ body {
 }
 
 .dropdown-content a:hover {
-    color: #0c59d8;
+    color: var(--color-contrast);
 }
 
 .navbar-default .navbar-toggle:hover,
@@ -671,7 +677,7 @@ body {
 .icon {
     font-family: 'Oswald', sans-serif;
     display: block;
-    color: #ff1d8d;
+    color: var(--color-primary);
     font-size: 5em;
     text-align: center;
     vertical-align: middle;
@@ -688,7 +694,7 @@ body {
 }
 
 .features h2 {
-    color: #0c59d8;
+    color: var(--color-contrast);
     font-size: 1.2em;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -894,7 +900,7 @@ blockquote p {
 }
 
 .team h2 {
-    color: #0c59d8;
+    color: var(--color-contrast);
     font-size: 1.2em;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -952,7 +958,7 @@ blockquote p {
 }
 
 .sp-dsc blockquote {
-    border-left-color: #0c59d8;
+    border-left-color: var(--color-contrast);
 }
 
 div.avatar {
@@ -1001,7 +1007,7 @@ div.avatar {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-size: 0.8em;
-    color: #0c59d8;
+    color: var(--color-contrast);
 }
 
 .sp-dsc {
@@ -1027,7 +1033,7 @@ div.avatar {
 /*********************/
 
 .btn-effect {
-    background: none repeat scroll 0 0 #0c59d8;
+    background: none repeat scroll 0 0 var(--color-contrast);
     border: medium none;
     color: #fff;
     letter-spacing: 0.2em;
@@ -1068,7 +1074,7 @@ div.avatar {
 }
 
 #get_directions.btn-effect{
-    background: none repeat scroll 0 0 #0c59d8;
+    background: none repeat scroll 0 0 var(--color-contrast);
     border: medium none;
     color: #fff;
     cursor: pointer;
@@ -1181,7 +1187,7 @@ div.avatar {
 }
 
 .accordion .item .heading .time {
-    border-top: 4px solid #ff1d8d;
+    border-top: 4px solid var(--color-primary);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -1334,7 +1340,7 @@ a {
 .md-content h3 {
     margin: 0;
     text-align: center;
-    color: #0c59d8;
+    color: var(--color-contrast);
     font-size: 1.3em;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1372,7 +1378,7 @@ a {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #0c59d8;
+    color: var(--color-contrast);
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -1423,7 +1429,7 @@ a {
 }
 
 .pricing button {
-    background: none repeat scroll 0 0 #0c59d8;
+    background: none repeat scroll 0 0 var(--color-contrast);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -1470,11 +1476,11 @@ a {
 }
 
 .planContainer .title h2.bestPlanTitle {
-    background: #0c59d8;
+    background: var(--color-contrast);
     color: #212639;
-    -webkit-box-shadow: 0 2px 0 0 #0c59d8;
-    -moz-box-shadow: 0 2px 0 0 #0c59d8;
-    box-shadow: 0 2px 0 0 #0c59d8;
+    -webkit-box-shadow: 0 2px 0 0 var(--color-contrast);
+    -moz-box-shadow: 0 2px 0 0 var(--color-contrast);
+    box-shadow: 0 2px 0 0 var(--color-contrast);
 }
 
 .planContainer .price p {
@@ -1491,7 +1497,7 @@ a {
 }
 
 .planContainer .price p.bestPlanPrice {
-    background: #0c59d8;
+    background: var(--color-contrast);
     color: #212639;
 }
 
@@ -1752,7 +1758,7 @@ button.expand {
 }
 
 .help button, .intro button {
-    background: none repeat scroll 0 0 #0c59d8;
+    background: none repeat scroll 0 0 var(--color-contrast);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -1830,7 +1836,7 @@ button.expand {
 }
 
 .tournament button, .program button {
-    background: none repeat scroll 0 0 #0c59d8;
+    background: none repeat scroll 0 0 var(--color-contrast);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -1927,7 +1933,7 @@ button.expand {
 }
 
 .contact-details h2 span {
-    color: #0c59d8;
+    color: var(--color-contrast);
     display: block;
     font-size: 0.8em;
     font-weight: 600;
@@ -1946,16 +1952,16 @@ button.expand {
 }
 
 .light-box {
-    -webkit-box-shadow: 0 -1px 0 0 #ff1d8d;
-    -moz-box-shadow: 0 -1px 0 0 #ff1d8d;
-    box-shadow: 0 -1px 0 0 #ff1d8d;
+    -webkit-box-shadow: 0 -1px 0 0 var(--color-primary);
+    -moz-box-shadow: 0 -1px 0 0 var(--color-primary);
+    box-shadow: 0 -1px 0 0 var(--color-primary);
     padding: 20px 0;
 }
 
 .light-box:hover, .light-box:focus {
-    -webkit-box-shadow: 0 5px 0 0 #ff1d8d;
-    -moz-box-shadow: 0 5px 0 0 #ff1d8d;
-    box-shadow: 0 5px 0 0 #ff1d8d;
+    -webkit-box-shadow: 0 5px 0 0 var(--color-primary);
+    -moz-box-shadow: 0 5px 0 0 var(--color-primary);
+    box-shadow: 0 5px 0 0 var(--color-primary);
 }
 
 .box-hover {
