@@ -1,0 +1,135 @@
+<style>
+    #error {
+        display: none;
+        color: red;
+    }
+
+    .status {
+        margin-top: 3em;
+        position: relative;
+    }
+
+    #accordion a {
+        color: #ff1d8d;
+    }
+</style>
+
+<section class="intro text-center section-padding">
+	<div class="container wow animated fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.5s">
+		<div class="row">
+			<div class="col-lg-8 align-center">
+				<h1 class="section">Frequently Asked Questions</h1>
+				<hr>
+				<p>
+					Check below for answers to all frequently asked questions. This page will update as more questions come in.
+				</p>
+				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>
+				<div class="status"></div>
+				<div id="faqAccordion" class="accordion">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	jQuery(document).ready(function ($) {
+		$.noConflict();
+
+		function getColumnIndex(sheetData, title) {
+			const titles = sheetData.map(sheet => sheet[0])
+			return titles.indexOf(title);
+		}
+
+		function transformData(data) {
+			const questions = data[getColumnIndex(data, 'FAQ Question')].slice(1);
+			const answers = data[getColumnIndex(data, 'FAQ Answer')].slice(1);
+
+			return questions.map((question, i) => {
+				return {question, answer: answers[i]}
+			}).filter(faq => !!(faq.question.trim()) && !!(faq.answer.trim()));
+		}
+
+		function setFaqs(faqs) {
+			function getElement(faq) {
+				return `
+					<div class="item clearfix">
+						<div class="heading">
+							<div class="e-title col-md-12 col-sm-12 col-xs-12">${faq.question}<br></div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="content details col-md-12 col-sm-12 col-xs-12">
+								${faq.answer || ''}
+							</div>
+						</div>
+					</div>`
+			}
+
+			$(".status").fadeOut()
+
+			const accordion = $('#faqAccordion')
+			accordion.fadeOut().promise().done(() => {
+				accordion.empty()
+				faqs.forEach(faq => {
+					accordion.append(getElement(faq))
+				})
+
+				/*******Schedule Accordion *************/
+				$('.accordion .item .heading').click(function () {
+					var a = $(this).closest('.item');
+					var b = $(a).hasClass('open');
+					var c = $(a).closest('.accordion').find('.open');
+
+					if (b != true) {
+						$(c).find('.content').slideUp(500);
+						$(c).removeClass('open');
+					}
+
+					$(a).toggleClass('open');
+					$(a).find('.content').slideToggle(500);
+
+				});
+
+				accordion.fadeIn()
+			})
+
+
+		}
+
+		let updateDataTimeout = null;
+		let faqs = [];
+		function updateData() {
+			if(!$('#faqAccordion').length) {
+				clearTimeout(updateDataTimeout)
+				return;
+			}
+
+			fetch('https://fotf3030.nl/api/timetable').then(res => {
+				try {
+					res.json().then(data => {
+						const newFaqs = transformData(data)
+						if (JSON.stringify(faqs) !== JSON.stringify(newFaqs)) {
+							faqs = newFaqs
+							setFaqs(faqs)
+						}
+					})
+					updateDataTimeout = setTimeout(updateData, 5000)
+				} catch (err) {
+					console.error(err)
+					displayError()
+				}
+			}).catch(err => {
+				console.error(err)
+				displayError()
+			})
+		}
+		updateData()
+
+		function displayError() {
+			$("#status").fadeOut().promise.done(() => {
+				$("#error").fadeIn()
+			})
+		}
+	});
+</script>

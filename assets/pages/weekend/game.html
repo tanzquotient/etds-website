@@ -1,0 +1,800 @@
+<style>
+    html, body{
+        margin:0 auto;
+        padding:0;
+        font-family: arial;
+    }
+
+    .correct {
+        color: #1cd91c;
+    }
+
+    #container{
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /*logo*/
+    .logo{
+        text-align: center;
+        margin-top: 4px;
+	    user-select: none;
+        text-shadow: 2px 3px 2px #000;
+        transition: .5s;
+        font-family: fantasy;
+    }
+
+    .logo:hover{
+        filter: brightness(1.125);
+    }
+
+    .logo_green, .logo_gold{
+        font-size: 30px;
+        color: #fff;
+        width: 49px;
+        height: 35px;
+        border-radius: 12px;
+        margin: 3px;
+        display: inline-block;
+    }
+
+    .logo_gold{
+        background-color: #5FC5DB;
+    }
+
+    .logo_green{
+        background-color: #F90058;
+    }
+
+    /*nav bar*/
+    .nav_bar{
+        text-align: center;
+        height: 33px;
+        margin-top: 11px;
+	    display: flex;
+	    justify-content: center;
+    }
+
+    .btn{
+        padding: 4px;
+        font-size: 19px;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        box-shadow: 1px 1px #FFAD00;
+        transition: .5s;
+	    margin: 0 10px;
+    }
+
+    .btn:hover{
+        opacity: .8;
+	    box-sizing: border-box;
+        box-shadow: -1px -1px #FFAD00;
+	    color: #aaa;
+    }
+
+    .trophy {
+	    width: 100%;
+	    padding: 0 25%;
+    }
+
+
+    /*game*/
+    .game_area{
+        margin-top:15px;
+    }
+
+    .row, .row_block{
+        display: flex;
+        justify-content: center;
+        margin: 5px;
+    }
+
+    .row_block{
+        font-size: 36px;
+        border: 1px solid;
+        width: 56px;
+        height: 51px;
+        border-radius: 12px;
+        transition: transform 1.6s;
+    }
+
+    /*notification*/
+    #notification{
+        font-family: arial;
+        text-align: center;
+        letter-spacing: 1px;
+        font-size: 19px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 22px;
+    }
+
+    /* keyboard */
+    #keyboard{
+        text-align:center;
+		margin: 15px 5% 0 5%;
+    }
+
+    #topKeys, #midKeys, #botKeys{
+        display: flex;
+        justify-content:center;
+    }
+
+    .keyboardKey_s, .keyboardKey_m, .keyboardKey_l{
+        font-size: 30px;
+        height: 42px;
+        padding: 5px 0;
+        margin: 2.5px;
+        display: flex;
+        justify-content: center;
+	    border: 1px solid #FFAD00;
+	    border-radius: 5px;
+        font-family: arial;
+        cursor: pointer;
+	    line-height: normal;
+    }
+
+    .keyboardKey_s{
+        width: 52px;
+    }
+
+    .keyboardKey_m{
+        width: 58px;
+    }
+
+    .keyboardKey_l{
+        width: 81px;
+    }
+
+
+    .blockGreen, .blockGrey, .blockGold{
+        color:#fff;
+        transform: rotateX(360deg);
+    }
+
+    .blockGreen{
+        background-color: #35a535;
+    }
+
+    .blockGrey{
+        background-color: #737373;
+    }
+
+    .blockGold{
+        background-color: #d7bf4a;
+    }
+
+    /*modal*/
+    #shadowBack{
+        position: absolute;
+	    top: 0;
+        left: 0;
+        background: #aaa;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        transition: 1s;
+    }
+
+    #modal{
+        position: absolute;
+        top: 100px;
+        width: 350px;
+        background: #000;
+        opacity: 0;
+        left: calc(50% - 175px);
+        z-index: 11;
+        transition: 1s;
+	    color: white;
+    }
+
+    .modalBtn, .modalBtnL{
+        width: 100%;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .modalBtn, .modalBtnL{
+        padding: 23.5px;
+    }
+
+    .modalBtnL{
+        padding: 87.5px;
+    }
+
+    .modalMessage{
+        display: block;
+        font-size: 22px;
+        text-align: center;
+        margin-top: 11px;
+        line-height: 32px;
+        letter-spacing: .5px;
+	    padding: 0.5em;
+    }
+
+    .msBlock{
+        display: inline-block;
+        text-align: center;
+        margin-top: 17px;
+        width: 49%;
+    }
+
+    .msHead{
+        display:block;
+        font-size: 20px;
+    }
+
+    .msBody{
+        display:block;
+        font-size: 60px;
+    }
+
+    .scoreType{
+        display: inline-block;
+        width:50%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .scoreBtn, .scoreBtnActive{
+        width: 25%;
+        padding: 13px 0;
+        cursor: pointer;
+        transition:.5s;
+    }
+
+    .scoreBtnActive {
+        background:#737373;
+        color:#fff;
+    }
+
+    #mhBlock{
+        padding: 8px;
+        font-size: 15px;
+    }
+
+    .mhbHead{
+        padding-bottom: 10px;
+        border-bottom: 1px solid #bbbbbb;
+    }
+
+    .mhbBody{
+        text-align: center;
+    }
+
+    .exampleRow{
+        padding: 4px;
+    }
+
+    .exampleTile{
+        font-size: 21px;
+        padding: 5px;
+        border: 3px solid #737373;
+        width: 28px;
+        margin: 3px;
+        display: inline-block;
+    }
+
+    /* menu */
+    #menu{
+        position: relative;
+        top:7px;
+    }
+
+    .menuBtn{
+        width:100%;
+        padding: calc(6vh - 30px);
+        font-size: 35px;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .row, .row_block{
+            margin: 2px;
+        }
+        .row_block {
+            font-size: 32px;
+            width: 45px;
+            height: 44px;
+        }
+    }
+</style>
+
+<section id="game" class="game text-center section-padding">
+
+</section>
+
+<script src="assets/js/words.js"></script>
+<script>
+	(function() {
+		let chosenWord; let guessedWords = [];let custom;let fullList;let currentRow = 0;let nextRowBlock = 0;let score = 0;let remNotification = 0;let gameFin = 0;let gameOn = 0;let maxBlock = 5;let level = 'custom';let difficulty = 'easy';let mustUse = '';let bestStreak = 0;let currentStreak = 0;let userScore = 0;let streakEasyCustom = 0; let scoreEasyCustom = 0;let scoreType = 'score';let scoreDiff = 'easy';
+
+		const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
+		let container = document.createElement('div');
+		container.id = 'container';
+		document.getElementById('game').append(container);
+
+		init();
+
+		function init() {
+			setGlobal();
+
+			custom = wordLists.custom;
+			fullList = wordLists.fullList;
+			gameStart()
+		}
+
+		function openModal(type, notification, end = true){
+			let modal = document.createElement('div');
+			modal.id = 'modal';
+			if(type == 'endScore'){
+				let message = document.createElement('span');
+				message.className = 'modalMessage';
+				message.innerHTML = notification;
+				modal.append(message);
+
+				if (notification.startsWith('Wow!')) {
+					let trophy = document.createElement('img');
+					trophy.className = 'trophy';
+					trophy.src = '/assets/img/other/trophy.png'
+					modal.append(trophy);
+				}
+
+				for(i = 0; i < 4; i++){
+					let modalScoreBlock = document.createElement('div');
+					modalScoreBlock.className = 'msBlock';
+					let msHeadContent = (i == 0)? 'SCORE' : ((i == 1)? 'TOP SCORE' : ((i == 2)? 'STREAK' : 'BEST STREAK'));
+					let modalScoreHead = document.createElement('span');
+					modalScoreHead.className = 'msHead';
+					modalScoreHead.innerText = msHeadContent;
+					modalScoreBlock.append(modalScoreHead);
+
+					let msBodyContent = (i == 0)? userScore : ((i == 1)? localStorage.getItem('score' + difficulty + level) : ((i == 2)? currentStreak : localStorage.getItem('streak' + difficulty + level)));
+					let modalScoreBody = document.createElement('span');
+					modalScoreBody.className = 'msBody';
+					modalScoreBody.innerText = (msBodyContent == null)? 0 : msBodyContent;
+					modalScoreBlock.append(modalScoreBody);
+					modal.append(modalScoreBlock);
+				}
+				if (end) {
+					setTimeout(function(){
+						document.addEventListener('click', restartClick);
+						document.addEventListener('keyup', restart);
+					}, 100);
+				} else {
+					setTimeout(function(){
+						document.addEventListener('click', closeModal);
+					}, 100);
+				}
+			}
+
+			container.prepend(modal);
+			setTimeout(function(){
+				modal.style.cssText = 'opacity: 1';
+			}, 1);
+
+			let shadowBack = document.createElement('div');
+			shadowBack.id = 'shadowBack';
+			container.prepend(shadowBack);
+			setTimeout(function(){
+				shadowBack.style.cssText = 'opacity: .35';
+			}, 1);
+		}
+
+		function addLogo(){
+			let logo = document.createElement('div');
+			logo.className = 'logo';
+
+			let domName = 'DANCLE';
+			for(i = 0; i < domName.length; i++){
+				let spanClass = (i == 0 || i % 2 == 0)? 'logo_green' : 'logo_gold';
+				let logoSpan = document.createElement('span');
+				logoSpan.className = spanClass;
+				logoSpan.innerText = domName[i];
+				logo.append(logoSpan);
+			}
+
+			container.append(logo);
+		}
+
+		function setGlobal(){
+			['streakEasyCustom', 'scoreEasyCustom', 'currentStreak', 'userScore'].forEach(lsItem => {
+				if (localStorage.getItem(lsItem) === null) {
+					localStorage.setItem(lsItem, '0');
+				}
+			})
+
+			streakEasyCustom = +localStorage.getItem('streakEasyCustom');
+			scoreEasyCustom = +localStorage.getItem('scoreEasyCustom');
+			currentStreak = +localStorage.getItem('currentStreak');
+			userScore = +localStorage.getItem('userScore');
+			guessedWords = localStorage.getItem('guessedWords') != null ? JSON.parse(localStorage.getItem('guessedWords')) : [];
+
+			gameFin = 0;
+			currentRow = 0;
+			nextRowBlock = 0;
+			score = 0;
+			remNotification = 0;
+			mustUse = '';
+		}
+
+		function gameOver(){
+			gameFin = 1;
+			document.removeEventListener('keyup', deleteClick, false);
+			document.removeEventListener('keyup', keyPress, false);
+			document.removeEventListener('keyup', restart, false);
+			document.removeEventListener('click', logoClick, false);
+			document.removeEventListener('click', enterClick, false);
+			document.removeEventListener('click', difficultyModal, false);
+			document.removeEventListener('click', closeModal, false);
+		}
+
+		function gameStart(){
+			setGlobal();
+			container.innerHTML = '';
+			let wordlist = custom.filter(word => !guessedWords.includes(word))
+
+			console.log(custom.length);
+
+			if (wordlist.length === 0) {
+				guessedWords = [];
+				localStorage.setItem('guessedWords', JSON.stringify(guessedWords));
+				wordlist = custom;
+			}
+
+			let rand = Math.floor(Math.random() * wordlist.length);
+			chosenWord = wordlist[rand].toUpperCase();
+
+			addLogo();
+
+			let navBar = document.createElement('div');
+			navBar.className = 'nav_bar';
+
+			let giveUpBtn = document.createElement('button');
+			giveUpBtn.id = 'giveUpBtn';
+			giveUpBtn.className = 'btn';
+			giveUpBtn.innerText = 'give up';
+			giveUpBtn.addEventListener('click', quitQlick);
+			navBar.append(giveUpBtn);
+
+			let scoreBtn = document.createElement('button');
+			scoreBtn.id = 'scoreBtn';
+			scoreBtn.className = 'btn';
+			scoreBtn.innerText = 'show score';
+			scoreBtn.addEventListener('click', function() {
+				setTimeout(function(){
+					openModal('endScore', 'This is your current score', false);
+				}, 250);
+			});
+			navBar.append(scoreBtn);
+
+			container.append(navBar);
+
+			let gameArea = document.createElement('div');
+			gameArea.className = 'game_area';
+			for(i = 0; i < 6; i++){
+				let row = document.createElement('div');
+				row.className = 'row';
+				for(j = 0; j < maxBlock; j++){
+					let rowBlock = document.createElement('div');
+					rowBlock.className = 'row_block';
+					row.append(rowBlock);
+				}
+				gameArea.append(row);
+			}
+			container.append(gameArea);
+
+			let notification = document.createElement('div');
+			notification.id = 'notification';
+			notification.innerText = 'Start guessing!'
+			container.append(notification);
+
+			let keyLayoutTop = 'QWERTYUIOP';
+			let keyLayoutMid = 'ASDFGHJKL';
+			let keyLayoutBot = 'ZXCVBNM';
+
+			let keyboard = document.createElement('div');
+			keyboard.id = 'keyboard';
+
+			let topKeys = document.createElement('div');
+			topKeys.id = 'topKeys';
+			addKeys(topKeys, keyLayoutTop, 'keyboardKey_s');
+			keyboard.append(topKeys);
+
+			let midKeys = document.createElement('div');
+			midKeys.id = 'midKeys';
+			addKeys(midKeys, keyLayoutMid, 'keyboardKey_m');
+			keyboard.append(midKeys);
+
+			let botKeys = document.createElement('div');
+			botKeys.id = 'botKeys';
+
+			let deleteKey = document.createElement('span');
+			deleteKey.className = 'keyboardKey_l';
+			deleteKey.innerHTML = '&#x2190;';
+			deleteKey.addEventListener("click", deleteClick);
+			botKeys.append(deleteKey);
+			addKeys(botKeys, keyLayoutBot, 'keyboardKey_s');
+
+			let enterKey = document.createElement('span');
+			enterKey.className = 'keyboardKey_l';
+			enterKey.innerText = 'Enter';
+			enterKey.addEventListener("click", enterClick);
+			botKeys.append(enterKey);
+			keyboard.append(botKeys);
+
+			container.append(keyboard);
+
+			document.addEventListener('keyup', keyPress);
+		}
+
+		function difficultyModal(){
+			openModal('difficultySelect');
+		}
+
+		function keyPress(event) {
+			if(gameFin == 0){
+				let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+				let wordRow = document.getElementsByClassName('row')[currentRow];
+				let rowBlockEl = wordRow.childNodes;
+				for(i = 0; i < alphabet.length; i++){
+					if ((event.key === alphabet[i] || event.key === alphabet[i].toUpperCase())) {
+						addLetter(rowBlockEl, alphabet[i]);
+					}
+				}
+				if(event.key === 'Enter') {
+					submitWord(wordRow, keyPress);
+				}
+				if(event.key === 'Backspace') {
+					deleteLetter(rowBlockEl);
+				}
+			}
+		}
+
+		function quitQlick(){
+			if(gameFin == 0){
+				let correct = '<span class="correct">' + chosenWord + '</span>';
+				let notification = 'The word was ' + correct + '. Click to play again';
+				currentStreak = 0;
+				userScore = 0;
+
+				localStorage.setItem('currentStreak', currentStreak);
+				localStorage.setItem('userScore', userScore);
+
+				guessedWords = [];
+				localStorage.setItem('guessedWords', JSON.stringify(guessedWords));
+
+				gameOver();
+
+				setTimeout(function(){
+					openModal('endScore', notification);
+				}, 250);
+			}
+		}
+
+		function enterClick(){
+			if(gameFin == 0){
+				let wordRow = document.getElementsByClassName('row')[currentRow];
+				let rowBlockEl = wordRow.childNodes;
+				submitWord(wordRow);
+			}
+		}
+
+		function logoClick(event) {
+			gameOn = 0;
+			container.innerHTML = '';
+			startMenu();
+		}
+
+		function restart(event) {
+			if (event.key === 'Enter') {
+				document.removeEventListener('keyup', restart, false);
+				document.removeEventListener('click', restartClick, false);
+				gameStart();
+			}
+		}
+
+		function restartClick(){
+			document.removeEventListener('keyup', restart, false);
+			document.removeEventListener('click', restartClick, false);
+			gameStart();
+		}
+
+		function closeModal(){
+			let modal = document.getElementById('modal');
+			let shadowBack = document.getElementById('shadowBack');
+			modal.style.cssText = 'opacity:0';
+			shadowBack.style.cssText = 'opacity:0';
+			document.removeEventListener('click', closeModal, false)
+
+			setTimeout(function(){
+				modal.remove();
+				shadowBack.remove();
+			}, 355);
+		}
+
+		function deleteClick(){
+			if(gameFin == 0){
+				let wordRow = document.getElementsByClassName('row')[currentRow];
+				let rowBlockEl = wordRow.childNodes;
+				deleteLetter(rowBlockEl);
+			}
+		}
+
+		function keyboardPress(){
+			if(gameFin == 0){
+				let layout = event.currentTarget.layout;
+				let wordRow = document.getElementsByClassName('row')[currentRow];
+				let rowBlockEl = wordRow.childNodes;
+				addLetter(rowBlockEl, layout);
+			}
+		}
+
+		function deleteLetter(rowBlockEl){
+			if(nextRowBlock > 0){
+				nextRowBlock--;
+				rowBlockEl[nextRowBlock].innerText = '';
+			}
+		}
+
+		function count(str, find) {
+			return (str.split(find)).length - 1;
+		}
+
+		function checkAnswer(wordRow, answer){
+			let answerArray = [];
+
+			for(i = 0; i < answer.length; i++){
+				let letter = answer[i].toUpperCase();
+				answerArray.push(letter);
+				let blockClass = 'blockGrey';
+				if(chosenWord.toUpperCase().includes(letter)){
+					if(chosenWord[i].toUpperCase() === letter){
+						score++;
+						blockClass = ' blockGreen';
+						if(count(answer, letter) > count(chosenWord, letter)){
+							for(j = 0; j < wordRow.childNodes.length; j++){
+								if(wordRow.childNodes[j].innerText == letter && wordRow.childNodes[j].className == 'row_block  blockGold'){
+									wordRow.childNodes[j].className = 'row_block  blockGrey';
+									let index = answerArray.indexOf(letter);
+									if (index !== -1) {
+										answerArray.splice(index, 1);
+									}
+								}
+							}
+						}
+					}else{
+						if(countOccurrences(answerArray, letter) <= count(chosenWord, letter)){
+							blockClass = ' blockGold';
+						}
+						else{
+							blockClass = ' blockGrey';
+						}
+					}
+				}
+				wordRow.childNodes[i].className = 'row_block ' + blockClass;
+				let keyboard = document.getElementById('keyboard_' + letter);
+				if(chosenWord.toUpperCase().includes(letter)){
+					if(letter == chosenWord[i]){
+						if(!keyboard.className.includes('blockGreen')){
+							keyboard.classList.remove('blockGold');
+							keyboard.className += ' blockGreen';
+						}
+					}else{
+						if(!keyboard.className.includes('blockGreen') && !keyboard.className.includes('blockGold')){
+							keyboard.className += ' blockGold';
+						}
+					}
+					if(count(answer, letter) > count(mustUse, letter) && count(mustUse, letter) <= count(chosenWord, letter)){
+						mustUse += letter;
+					}
+				}
+				else{
+					if(!keyboard.className.includes('blockGrey')){
+						keyboard.className += ' blockGrey';
+					}
+				}
+			}
+
+			if(score === maxBlock){
+				let scoreLevel = 1;
+				userScore = userScore + ((scoreLevel * 10) - ((scoreLevel + 1) * currentRow));
+
+				if(userScore > localStorage.getItem('score' + difficulty + level)){
+					localStorage.setItem('score' + difficulty + level, userScore);
+				}
+
+				currentStreak++;
+				if(currentStreak > localStorage.getItem('streak' + difficulty + level)){
+					localStorage.setItem('streak' + difficulty + level, currentStreak);
+				}
+				localStorage.setItem('currentStreak', currentStreak)
+				localStorage.setItem('userScore', userScore)
+
+				guessedWords.push(chosenWord);
+				localStorage.setItem('guessedWords', JSON.stringify(guessedWords));
+
+				let notification;
+				if (custom.length === guessedWords.length) {
+					notification = 'Wow! You have guessed all words in a row! Show this screen to Remy of the orga. If you are one of the first three, you get a free bottle of sparkling wine!';
+				} else {
+					notification = 'Well done, you won! Click to play again';
+				}
+
+				gameOver();
+
+				setTimeout(function(){
+					openModal('endScore', notification);
+				}, 250);
+			}
+			else if(currentRow == 5){
+				let correct = '<span class="correct">' + chosenWord + '</span>';
+				let notification = 'The word was ' + correct + '. Click to play again';
+				userScore = 0;
+				currentStreak = 0;
+
+				localStorage.setItem('currentStreak', currentStreak);
+				localStorage.setItem('userScore', userScore);
+
+				guessedWords = [];
+				localStorage.setItem('guessedWords', JSON.stringify(guessedWords));
+
+				gameOver();
+
+				setTimeout(function(){
+					openModal('endScore', notification);
+				}, 250);
+			}
+			else{
+				score = 0;
+				nextRowBlock = 0;
+				currentRow++;
+			}
+		}
+
+		function submitWord(wordRow){
+			if(nextRowBlock > 0 && nextRowBlock % maxBlock == 0){
+				let answer = wordRow.innerText.replace(/[\n\r]/g, '');
+				if(fullList.includes(answer)){
+					checkAnswer(wordRow, answer);
+				}else{
+					remNotification = 0;
+					document.getElementById('notification').innerText = 'Word not in list';
+				}
+			}else{
+				remNotification = 0;
+				document.getElementById('notification').innerText = 'You must enter ' + maxBlock + ' characters';
+			}
+		}
+
+		function addKeys(el, layout, keyClass){
+			for(i = 0; i < layout.length; i++){
+				let key = document.createElement('span');
+				key.className = keyClass;
+				key.id = 'keyboard_' + layout[i];
+				key.innerText = layout[i];
+				key.layout = layout[i];
+				key.addEventListener("click", keyboardPress);
+				el.append(key);
+			}
+		}
+
+		function addLetter(rowBlockEl, letter){
+			if(remNotification == 0){
+				remNotification = 1;
+				document.getElementById('notification').innerText = '';
+			}
+			if(nextRowBlock < maxBlock){
+				rowBlockEl[nextRowBlock].innerText = letter.toUpperCase();
+				nextRowBlock++;
+			}
+		}
+	})()
+</script>

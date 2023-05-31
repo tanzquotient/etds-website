@@ -1,0 +1,111 @@
+<style>
+	.intro ul {
+		position: relative;
+		list-style: none;
+		margin-left: 0;
+		padding-left: 1.8em;
+	}
+
+	.intro ul li:before {
+		content: "";
+		position: absolute;
+        left: 0.6em;
+    }
+
+	.checkbox {
+		margin-right: 0.3em !important;
+		margin-bottom: 0.1em !important;
+		vertical-align: bottom;
+		display: inline;
+        filter: invert(100%) hue-rotate(280deg) brightness(0.65) saturate(2);
+    }
+
+</style>
+
+<section class="intro text-center section-padding">
+	<div class="container wow animated fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.5s">
+		<div class="row">
+			<div class="col-lg-8 align-center packingList">
+				<h1 class="section">Packing list</h1>
+				<hr>
+				<p>What to pack for the weekend: don't forget so you won't regret!</p>
+				<p>It's interactive, so you can just click the box before each item to mark it off!</p>
+				<div class="col-md-6 col-sm-6 col-xs-12 left-align">
+					<h2 class="section">Clothing</h2>
+					<ul>
+						<li>Outfit for Standard competition</li>
+						<li>Shoes for Standard</li>
+						<li>Outfit for Latin competition</li>
+						<li>Shoes for Latin</li>
+						<li>Heel protectors (ladies)</li>
+						<li>Outfit to dance in on Friday evening</li>
+						<li>Theme outfit (Festival of the Future)</li>
+						<li>Gala outfit</li>
+						<li>Pyjamas</li>
+						<li>Underwear, bra</li>
+						<li>Socks/panties</li>
+						<li>Chill clothing while cheering on your team mates</li>
+						<li>Normal clothing in case you want to head into town</li>
+						<li>Slippers, flip-flops, loafers, whatever is comfortable</li>
+					</ul>
+					<h2 class="section">Sleeping stuff</h2>
+					<ul>
+						<li>Air mattress</li>
+						<li>Pump</li>
+						<li>Sleeping bag or blanket</li>
+						<li>Pillow</li>
+						<li>Ear plugs</li>
+						<li>Sleeping mask</li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 left-align">
+					<h2 class="section">Toiletries</h2>
+					<ul>
+						<li>Towel(s)</li>
+						<li>Shower gel, shampoo, conditioner</li>
+						<li>Deodorant</li>
+						<li>Toothbrush</li>
+						<li>Toothpaste</li>
+						<li>Glasses/contacts(don't forget the fluid)</li>
+						<li>Hairbrush</li>
+						<li>Gel/hairspray/other things you need to make your hair look fancy</li>
+						<li>Make-up</li>
+						<li>Make-up remover</li>
+						<li>Shaving kit</li>
+						<li>Mirror</li>
+						<li>Medicine (don't forget blister plasters)</li>
+					</ul>
+					<h2 class="section">Other</h2>
+					<ul>
+						<li>Bank card (for drinks)</li>
+						<li>ID of passport</li>
+						<li>Student card (with proof of registration in case you don't get a new card every year)</li>
+						<li>Your favorite tea or coffee mug</li>
+						<li>Phone</li>
+						<li>Phone charger</li>
+						<li>Extension cord (for power, not necessary)</li>
+						<li>Team related cheering material</li>
+						<li>Camera</li>
+						<li>Flashlight</li>
+						<li>A good mood, great energy and exuberant enthusiasm!</li>
+						<li>Scratcher for your dancing shoes</li>
+					</ul>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	const items = document.querySelector(".packingList").getElementsByTagName("li");
+
+	for (const item of items) {
+		const checkbox = document.createElement("input");
+		checkbox.setAttribute("type", "checkbox");
+		checkbox.setAttribute("class", "checkbox");
+
+		item.prepend(checkbox);
+	}
+</script>

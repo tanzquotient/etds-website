@@ -1,0 +1,446 @@
+<style>
+	.status {
+		margin-top: 3em;
+		position: relative;
+	}
+
+	#error {
+		display: none;
+		color: red;
+	}
+
+	#timetableHeader {
+		white-space: pre-line;
+		height: 3em;
+	}
+
+	#timetableContainer {
+		display: none;
+		width: 100%;
+		padding: 0 30px;
+	}
+
+	.ttEntry {
+		display: flex;
+		width: 100%;
+
+		font-size: 1.5em;
+		margin-top: -5px;
+	}
+
+	.ttEntry > * {
+        line-height: 1em;
+		margin: 0.3em 0;
+    }
+
+	.ttTime {
+		text-align: right;
+		width: calc(50% - 3.5em);
+		padding-right: 1em;
+
+		font-family: 'Courier New', Courier, monospace;
+		font-weight: bold;
+	}
+
+	.ttActivity {
+		text-align: left;
+		width: calc(50% + 3.5em);
+		padding-left: 1em
+	}
+
+	.spacer {
+		height: 1em;
+	}
+
+	.nowHeader {
+		font-size: 2em;
+		color: #ff1d8d;
+		margin-bottom: 0.5em;
+	}
+
+	.firstSpacer {
+		height: 6em;
+	}
+
+	.presenterMode {
+		padding: 0;
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 94vh;
+		width: 100vw;
+		display: flex;
+
+		justify-content: center;
+		align-items: center;
+
+		font-size: 2.5vh;
+	}
+
+    .presenterMode hr:first-of-type {
+	    display: none;
+    }
+
+    .presenterMode h2 {
+        margin-top: 0.5em;
+	    margin-bottom: 0.2em;
+    }
+
+	.presenterMode h2:first-of-type {
+		margin-top: 0;
+	}
+
+	.presenterMode .ttEntry {
+		font-size: 4vh;
+	}
+
+	.hh {
+		color: #F90058;
+	}
+
+    .mm {
+        color: #FFAD00;
+    }
+
+    .ss {
+        color: #5FC5DB;
+    }
+
+    #announcements {
+	    display: none;
+	    padding: 1vh;
+	    font-size: 3.5vh;
+	    background: #ffffff22;
+	    color: #ddd;
+    }
+</style>
+
+<section class="timetable text-center section-padding">
+	<div class="container wow animated fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.5s">
+		<div class="row">
+			<div class="col-lg-10 align-center">
+				<h1 id="timetableHeader" class="section">&nbsp;<br>Live timetable</h1>
+				<hr>
+				<div id="mainContent">
+					<p id="subtitle" class="col-lg-10 col-lg-offset-1">
+					This page is updated every 10 seconds. However, we all know things break. Always make sure to keep paying attention to the presenter just in case!
+					</p>
+					<br>
+					<div class="status col-lg-10 col-lg-offset-1"></div>
+					<p id="error">Something went wrong when trying to load the website. Please try again later by refreshing the page!</p>
+					<div id="timetableContainer">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div id="announcements">
+	Loading...
+</div>
+
+<script>
+	jQuery(document).ready(function ($) {
+		$.noConflict();
+
+		function getUrlVars()
+		{
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for(var i = 0; i < hashes.length; i++)
+			{
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+
+		let limit = null
+		if (getUrlVars()['presenter'] === 'true') {
+			$('footer').hide();
+			$('.header').hide();
+			$('#subtitle').hide();
+			$('#announcements').show();
+
+			const tt = $('.timetable')
+			tt.addClass('presenterMode')
+
+			const container = tt.parent()
+
+			container.append('<script src="assets/js/eocjs-newsticker.min.js"><\/script>')
+			container.append('<link rel="stylesheet" href="assets/css/eocjs-newsticker.css">')
+
+			limit = 3
+		}
+
+		function getColumnIndex(sheetData, title) {
+			const titles = sheetData.map(sheet => sheet[0])
+			return titles.indexOf(title);
+		}
+
+		function processSheetData(data) {
+			try {
+				const sheetData = data.map(column => column.slice(1))
+
+
+				const friday = sheetData[getColumnIndex(data, 'Friday')].map((el, i) => {
+					return {
+						activity: el,
+						time: sheetData[getColumnIndex(data, 'Start Friday')][i]
+					}
+				})
+
+				const saturday = sheetData[getColumnIndex(data, 'Saturday')].map((el, i) => {
+					return {
+						activity: el,
+						time: sheetData[getColumnIndex(data, 'Start Saturday')][i]
+					}
+				})
+
+				const sunday = sheetData[getColumnIndex(data, 'Sunday')].map((el, i) => {
+					return {
+						activity: el,
+						time: sheetData[getColumnIndex(data, 'Start Sunday')][i]
+					}
+				})
+
+				const monday = sheetData[getColumnIndex(data, 'Monday')].map((el, i) => {
+					return {
+						activity: el,
+						time: sheetData[getColumnIndex(data, 'Start Monday')][i]
+					}
+				})
+
+				return { friday, saturday, sunday, monday }
+			} catch (e) {
+				throw new Error(`General error when processing sheet data: ${e}`)
+			}
+		}
+
+		function getCurrentDayTime() {
+			const now = new Date(Date.now());
+
+			const day = now.toLocaleString('en-us', {
+				weekday: 'long',
+				timeZone: 'Europe/Amsterdam'
+			}).toLowerCase();
+			const time = now.toLocaleString('nl-nl', {
+				hour: '2-digit',
+				minute: '2-digit',
+				timeZone: 'Europe/Amsterdam'
+			});
+
+			const timeWithS = now.toLocaleString('nl-nl', {
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+				timeZone: 'Europe/Amsterdam'
+			});
+
+			if (!['friday', 'saturday', 'sunday', 'monday'].includes(day)) {
+				$('#subtitle').text("We know it's not friday. But you're looking at this page outside of the ETDS weekend." +
+					" So... We're showing you the timetable for friday! Why? 'Cause an empty page looks a little sad! Also... #morehype!")
+				return { day, time, timeWithS, now }
+			}
+
+			return { day, time, timeWithS, now }
+		}
+
+		function displayCurrentTime() {
+			$("#timetableHeader").fadeOut(function () {
+				const [hh, mm, ss] = timeWithS.split(':')
+				$("#timetableHeader").html(`<span class="day">${day}</span><br><span class="hh">${hh}</span>:<span class="mm">${mm}</span>:<span class="ss">${ss}</span>`)
+			}).fadeIn();
+
+			setInterval(() => {
+				const [hh, mm, ss] = timeWithS.split(':')
+				$("#timetableHeader").html(`<span class="day">${day}</span><br><span class="hh">${hh}</span>:<span class="mm">${mm}</span>:<span class="ss">${ss}</span>`)
+			}, 1000)
+		}
+
+		function displayTimetable() {
+			$(".status").fadeOut().promise().done(() => {
+				$("#timetableContainer").fadeIn()
+			});
+		}
+
+		let next = null;
+		function updateTimetable(activities, day, time) {
+			const tt = $("#timetableContainer");
+			tt.fadeOut().promise().done(() => {
+				tt.empty();
+				$("#error").fadeOut()
+
+				const dayActivities = activities[day] || activities['friday']
+
+				let lastEntry = null;
+				let firstEntryPlaced = false;
+				let now = null;
+				let count = 1;
+				dayActivities.forEach((entry, index) => {
+					if ((new Date(`1/1/2000 ${entry.time}:00`) <= new Date(`1/1/2000 ${time}:00`))
+						&& ['friday', 'saturday', 'sunday', 'monday'].includes(day)
+						&& !firstEntryPlaced
+					) {
+
+						// Keep track of current entry/entries
+						if (now?.[0]?.time === entry.time) {
+							now.push(entry)
+						} else {
+							now = [entry];
+						}
+						return
+					}
+
+					if (!entry.time || !entry.activity) {
+						return
+					}
+
+					if (limit && count > limit) {
+						return
+					} else if (dayActivities[index+1]?.time !== entry.time) {
+						count++;
+					}
+
+					if (now?.[0]) {
+						tt.append('<h2 class="nowHeader">Now:</h2>')
+						now.forEach(entry => {
+							tt.append(`<div class="ttEntry"><p class="ttTime">${entry.time}</p><p class="ttActivity">${entry.activity}</p></div>`);
+						})
+						tt.append('<hr>')
+						tt.append('<h2 class="nowHeader">Next:</h2>')
+						now = null
+					} else if (!firstEntryPlaced) {
+						tt.append('<div class="firstSpacer"></div>')
+					}
+
+					if (firstEntryPlaced && entry.activity.substr(0, 3) !== lastEntry?.activity?.substr(0, 3)) {
+						tt.append('<div class="spacer"></div>')
+					}
+
+					// Keep track of first upcoming item
+					if (!next || !firstEntryPlaced) {
+						next = entry;
+					}
+					firstEntryPlaced = true;
+
+					if (lastEntry
+						&& (new Date(`1/1/2000 ${lastEntry.time}:00`) > new Date(`1/1/2000 ${15}:00`))
+						&& (new Date(`1/1/2000 ${entry.time}:00`) < new Date(`1/1/2000 ${12}:00`))
+						&& (new Date(`1/1/2000 ${entry.time}:00`) < new Date(`1/1/2000 ${lastEntry.time}:00`))) {
+						tt.append('<hr>')
+						tt.append('<div class="spacer"></div>')
+					}
+
+					lastEntry = entry
+					tt.append(`<div class="ttEntry"><p class="ttTime">${entry.time}</p><p class="ttActivity">${entry.activity}</p></div>`);
+				})
+
+				if (tt.is(":hidden")) {
+					displayTimetable()
+					return;
+				}
+				tt.fadeIn();
+			})
+		}
+
+		function displayError() {
+			$(".status").fadeOut().promise().done(() => {
+				$("#error").fadeIn()
+			});
+		}
+
+
+		let announcements = [' '];
+		function getAnnouncements() {
+			const annEl = $("#announcements");
+			if (announcements.length === 0) {
+				annEl.animate({height: 0})
+				return [' ']
+			}
+
+			annEl.animate({height: '6vh'})
+			return announcements;
+		}
+
+		function transformAnnouncementData(data) {
+			let announcements = data[getColumnIndex(data, 'Announcements')].slice(1).filter(a => a.trim() !== '');
+			announcements = announcements.map((ann, i) => {
+				return `${i+1}/${announcements.length}: ${ann}`
+			})
+
+			return announcements;
+		}
+
+		let tickerShown = false;
+		function initTicker() {
+			const annEl = $("#announcements")
+			annEl.eocjsNewsticker({
+				type: 'dynamic',
+				divider: '—',
+				speed: 10,
+				interval: 1,
+				getContentArray: getAnnouncements,
+			});
+		}
+
+
+		let activities = null;
+		let updateDataTimeout = null;
+		function updateData() {
+			if(!$('#timetableContainer').length) {
+				clearTimeout(updateDataTimeout)
+				return;
+			}
+			fetch('https://fotf3030.nl/api/timetable').then(res => {
+				try {
+					res.json().then(data => {
+						const newActivities = processSheetData(data)
+						if (JSON.stringify(activities) !== JSON.stringify(newActivities)) {
+							activities = newActivities;
+							updateTimetable(activities, day, time)
+						} else {
+
+						}
+
+						if (getUrlVars()['presenter'] === 'true') {
+							announcements = transformAnnouncementData(data)
+							if (!tickerShown) {
+								initTicker();
+								tickerShown = true;
+							}
+						}
+					})
+					updateDataTimeout = setTimeout(updateData, 5000)
+				} catch (err) {
+					console.error(err)
+					displayError()
+				}
+			}).catch(err => {
+				console.error(err)
+				displayError()
+			})
+		}
+
+		let {day, time, timeWithS} = getCurrentDayTime()
+		setInterval(() => {
+			const d = getCurrentDayTime()
+			day = d.day
+			time = d.time
+			timeWithS = d.timeWithS
+
+			if (d.now.getSeconds() === 0 && next.time === time) {
+				updateTimetable(activities, day, time);
+			}
+		}, 1000)
+
+		updateData()
+
+		setTimeout(() => {
+			displayCurrentTime()
+		}, 2000)
+	});
+</script>

@@ -1,0 +1,127 @@
+
+.intro {
+    min-height: 90vh;
+}
+
+.intro img {
+    padding-top: 0;
+}
+
+.centeredButtonContainer {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+
+a.buttonContainer {
+    margin: 1em 0;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    padding: 2em 1em;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.button {
+    background-image: linear-gradient(135deg, #2f4895dd, #79c7d9dd);
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 2em);
+    height: 100%;
+    background-image: linear-gradient(-45deg, #e60f5bdd, #f69c49dd);
+    opacity: 0;
+    margin: 0 1em;
+    padding: 2em 2em;
+    border-radius: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover:before {
+    opacity: 1;
+}
+
+.button span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-transform: uppercase;
+    color: #fff;
+
+    height: 3em;
+
+    font-size: 1.6em;
+
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .button span {
+        font-size: 1.2em;
+    }
+}
+
+.imageContainer + span {
+    height: 2em;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+
+    margin-bottom: 2em;
+}
+
+.button .imageContainer img {
+    height: 70px;
+    width: 70px;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+    -webkit-filter: invert(31%) sepia(92%) saturate(6767%) hue-rotate(329deg) brightness(90%) contrast(102%);
+    filter: invert(31%) sepia(92%) saturate(6767%) hue-rotate(329deg) brightness(90%) contrast(102%);
+}
+
+.button:hover .imageContainer img {
+    -webkit-filter: invert(74%) sepia(26%) saturate(630%) hue-rotate(164deg) brightness(100%) contrast(94%);
+    filter: invert(74%) sepia(26%) saturate(630%) hue-rotate(164deg) brightness(100%) contrast(94%)
+}
+
+section.weekend .normalColor .button .imageContainer img {
+    -webkit-filter: unset;
+    filter: unset;
+}
+
+section.weekend .normalColor .button:hover .imageContainer img {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+@media (max-width: 768px) {
+    .imageContainer img {
+        height: 40px;
+        width: 40px;
+    }
+}
