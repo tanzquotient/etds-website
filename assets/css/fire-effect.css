@@ -1,42 +1,51 @@
-
-
-.font-effect-fire-animation > *:nth-child(odd) {
-    animation: animation 0.5s ease-in-out infinite alternate;
+.font-effect-fire-animation {
+    text-shadow: 0 3px 10px #fefcc9,
+    5px -7px 15px #feec85,
+    -10px -7px 20px #ffae34,
+    10px -17px 25px #ec760c,
+    -10px -27px 30px #cd4606,
+    0 -37px 35px #973716,
+    5px -42px 40px #451b0e;
 }
 
-.font-effect-fire-animation > *:nth-child(even) {
-    animation: animation 0.35s ease-in-out infinite alternate;
-}
+/*.font-effect-fire-animation span {*/
+/*    --duration: 1s;*/
+/*    --delay: 0s;*/
+/*    animation: animation var(--duration) ease-in-out var(--delay) infinite alternate;*/
+/*}*/
 
-.font-effect-fire-animation > *:nth-child(3n) {
-    animation: animation 0.6s ease-in-out infinite alternate;
-}
+/*.font-effect-fire-animation span {*/
+/*    text-shadow: 0 3px 10px #fefcc9,*/
+/*    5px -7px 15px #feec85,*/
+/*    -10px -7px 20px #ffae34,*/
+/*    10px -17px 25px #ec760c,*/
+/*    -10px -27px 30px #cd4606,*/
+/*    0 -37px 35px #973716,*/
+/*    5px -42px 40px #451b0e;*/
+/*}*/
 
-.font-effect-fire-animation > *:nth-child(4n+1) {
-    animation: animation 0.4s ease-in-out infinite alternate;
-}
+/*.font-effect-fire-animation span:after {*/
+/*    content: attr(text);*/
+/*    text-shadow: 0 3px 10px #fefcc9,*/
+/*    5px -2px 15px #fefcc9,*/
+/*    -10px -7px 20px #feec85,*/
+/*    11px -18px 30px #ffae34,*/
+/*    -11px -26px 25px #ec760c,*/
+/*    0 -38px 40px #cd4606,*/
+/*    5px -42px 40px  #973716;*/
 
-@keyframes animation
-{
-    0% {
-        text-shadow: 0 3px 10px #fefcc9,
-            5px -7px 15px #feec85,
-            -10px -7px 20px #ffae34,
-            10px -17px 25px #ec760c,
-            -10px -27px 30px #cd4606,
-            0 -37px 35px #973716,
-            5px -42px 40px #451b0e;
-    }
-    100% {
-        text-shadow: 0 3px 10px #fefcc9,
-            5px -2px 15px #fefcc9,
-            -10px -7px 20px #feec85,
-            11px -18px 30px #ffae34,
-            -11px -26px 25px #ec760c,
-            0 -38px 40px #cd4606,
-            5px -42px 40px  #973716;
-    }
-}
+/*    animation-direction: alternate-reverse;*/
+/*}*/
+
+/*@keyframes animation {*/
+/*    0% {*/
+/*        opacity: 100%;*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 0%;*/
+/*    }*/
+/*}*/
+
 
 
 /****************************/
