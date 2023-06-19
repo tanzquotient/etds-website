@@ -222,6 +222,20 @@ jQuery( document ).ready(function( $ ) {
 				}
 			});
 
+			/***************** Do fire ********************/
+
+			var fireElements = $(".font-effect-fire-animation");
+			function randomBetween(min, max) { // min and max included
+				return Math.floor(Math.random() * (max - min + 1) + min)
+			}
+			fireElements.each(function() {
+				var el = $(this);
+				var chars = el.text().split("");
+				var html = chars.reduce((acc, char) => acc + `<span style="animation: animation ${randomBetween(30,100)/100}s ease-in-out ${randomBetween(30,100)/100}s infinite alternate;">${char}</span>`, "");
+				el.html(html);
+			})
+
+
 			/***************** Animation ******************/
 			var wow = new WOW(
 				{
