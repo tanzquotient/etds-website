@@ -144,17 +144,6 @@
         display: none;
     }
 
-    .btn-effect:hover:after,
-    .btn-effect:active:after {
-        display: none;
-    }
-
-    #get_directions.btn-effect:after,
-    #get_directions.btn-effect:hover:after,
-    #get_directions.btn-effect:active:after {
-        display: none;
-    }
-
     .home-bg {
         animation: none;
         -webkit-animation: none;

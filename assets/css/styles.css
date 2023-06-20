@@ -1060,27 +1060,6 @@ div.avatar {
     background: none repeat scroll 0 0 #fff;
 }
 
-.btn-effect:after {
-    background: none repeat scroll 0 0 #000;
-    height: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    content: "";
-    position: absolute;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -ms-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-}
-
-.btn-effect:hover:after,
-.btn-effect:active:after {
-    height: 100%;
-}
-
 #get_directions.btn-effect{
     background: linear-gradient(175deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
     border: medium none;
@@ -1094,27 +1073,6 @@ div.avatar {
     transition: all 0.3s ease 0s;
     width: 230px;
     z-index: 1;
-}
-
-#get_directions.btn-effect:after {
-    background: none repeat scroll 0 0 #000;
-    height: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    content: "";
-    position: absolute;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -ms-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-}
-
-#get_directions.btn-effect:hover:after,
-#get_directions.btn-effect:active:after {
-    height: 100%;
 }
 
 #get_directions.btn-effect i {
