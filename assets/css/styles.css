@@ -272,7 +272,18 @@ hr {
     left: 0;
     width: 100%;
     z-index: 2;
+}
 
+.home-sign {
+    position: absolute;
+    z-index: 2;
+    right:0;
+    bottom: -100px;
+    max-height: 80vh;
+
+    filter: drop-shadow(2px 2px 2px #020202);
+    transform: rotate(-10deg);
+    transition: all 0.5s ease-in-out;
 }
 
 video {

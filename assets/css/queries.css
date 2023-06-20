@@ -69,6 +69,10 @@
         height: 250px;
     }
 
+    .landing-text-pos {
+        margin-top: -50px;
+    }
+
     .grid-gal .gallery-3d {
         background-position: 0 -25vw;
     }
@@ -80,6 +84,12 @@
         clear: both;
         text-align: center;
         float: none;
+    }
+
+    .home-sign {
+        bottom: -80px;
+        max-height: initial;
+        height: 500px;
     }
 }
 
@@ -232,6 +242,14 @@
 
     .navbar-default .navbar-toggle .icon-bar {
         background-color: #fff;
+    }
+
+    .home-sign {
+        bottom: -60px;
+        height: 400px;
+        right: 20px;
+
+        transform: rotate(10deg);
     }
 }
 
