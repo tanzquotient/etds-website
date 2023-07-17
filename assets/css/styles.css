@@ -582,7 +582,7 @@ body {
     opacity: 0;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0 0 8px 0 rgba(255, 29, 141, 0.7);
+    box-shadow: 0 0 8px 0 rgba(229, 177, 7, 0.7);
     border-radius: 8px;
     z-index: 1;
 
@@ -595,7 +595,7 @@ body {
     border-radius: 0;
     background-color: #0c040f;
 
-    box-shadow: 7px 0 5px -5px rgba(255, 29, 141, 1), -7px 0px 5px -5px rgba(255, 29, 141, 1);
+    box-shadow: 7px 0 5px -5px rgba(229, 177, 7, 1), -7px 0px 5px -5px rgba(229, 177, 7, 1);
 
 }
 
