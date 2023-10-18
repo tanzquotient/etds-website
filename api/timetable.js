@@ -23,7 +23,6 @@ async function getSheetData() {
   return (await res.json()).values
 }
 
-
 async function handler(request, response) {
   if (!sheetData || lastUpdated < Date.now() - 5000) {
     sheetData = await getSheetData()

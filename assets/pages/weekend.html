@@ -6,31 +6,65 @@
 		color: red;
 	}
 
-	#announcements {
-		font-size: 1.5em;
-		padding: 0 1em;
-		overflow: hidden;
+	/*#announcements {*/
+	/*	font-size: 1.5em;*/
+	/*	padding: 0 1em;*/
+	/*	overflow: hidden;*/
+	/*	padding: 3px;*/
+	/*	background: white;*/
+	/*	color: black;*/
+	/*}*/
+
+	/*#announcements a {*/
+	/*	color: var(--color-primary);*/
+	/*}*/
+
+	section.weekend {
+		position: absolute;
+		top: 55px;
+		left: 0;
+		width: 100%;
+		height: calc(100% - 55px);
+		overflow: hidden scroll;
+		overscroll-behavior-y: contain;
+		z-index: 10;
 	}
 
-	#announcements a {
-		color: var(--color-primary);
+	.autoheight {
+		margin-top: -55px;
+	}
+
+	footer {
+		display: none;
 	}
 </style>
+
+<section id="home" class="autoheight">
+	<!--LANDING VIDEO-->
+	<!--	TODO: Lazy load videos-->
+	<video id="video" autoplay muted playsinline loop >
+		<source src="assets/vid/hell.mp4" type="video/mp4">
+		your browser does not support HTML5
+	</video>
+	<!--/LANDING VIDEO-->
+
+	<div class="home-bg"></div>
+</section>
 
 <section class="weekend text-center section-padding">
 	<div class="container wow animated fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.5s">
 		<div class="row">
 			<div class="col-lg-8 align-center">
-				<h1 class="section font-effect-fire-animation">Festival App</h1>
-				<hr>
-				<p>
-					Important information will be displayed here!
-				</p>
-				<br>
-				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>
-				<div id="announcements">
-					Loading...
-				</div>
+				<h1 class="section font-effect-fire-animation">Festival<br/>App</h1>
+<!--				<hr>-->
+<!--				<p>-->
+<!--					Important information will be displayed here!-->
+<!--				</p>-->
+<!--				<br>-->
+<!--				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>-->
+<!--				<div id="announcements">-->
+<!--					Loading...-->
+<!--				</div>-->
 			</div>
 		</div>
 		<hr>
@@ -74,7 +108,7 @@
 			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/map-venue" data-wow-duration="1s" data-wow-delay="0.3">
 				<div class="button">
 					<div class="imageContainer"><img src="assets/img/weekend/map.svg" alt="Festival Map"></div>
-					<span>Festival Map</span>
+					<span>Map of Hell</span>
 				</div>
 			</a>
 			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/sleeping-halls" data-wow-duration="1s" data-wow-delay="0.3">
@@ -95,40 +129,10 @@
 					<span>Adjudicator center</span>
 				</div>
 			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/dinner" data-wow-duration="1s" data-wow-delay="0.3s">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/food.svg" alt="Dinner"></div>
-					<span>Dinner shifts</span>
-				</div>
-			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/theme-song" data-wow-duration="1s" data-wow-delay="0.3s">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/music.svg" alt="Theme song lyrics"></div>
-					<span>Theme song lyrics</span>
-				</div>
-			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/saturday" data-wow-duration="1s" data-wow-delay="0.3s">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/Delft.svg" alt="Delft"></div>
-					<span>Where to go on Saturday</span>
-				</div>
-			</a>
 			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/emergency" data-wow-duration="1s" data-wow-delay="0.3s">
 				<div class="button">
 					<div class="imageContainer"><img src="assets/img/weekend/emergency.svg" alt="Emergency"></div>
 					<span>In case of emergency</span>
-				</div>
-			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/lottery-judge" data-wow-duration="1s" data-wow-delay="0.3s">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/lottery.svg" alt="Lottery"></div>
-					<span>Open adjudicator lottery sign-up</span>
-				</div>
-			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/bonus-dance" data-wow-duration="1s" data-wow-delay="0.3s">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/bonus-dance.png" alt="Lottery"></div>
-					<span>Open bonus dance</span>
 				</div>
 			</a>
 			<a class="buttonContainer normalColor col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/game" data-wow-duration="1s" data-wow-delay="0.3s">
@@ -147,82 +151,82 @@
 	</div>
 </section>
 
-<script src="assets/js/eocjs-newsticker.min.js"></script>
-<link rel="stylesheet" href="assets/css/eocjs-newsticker.css">
-<script>
-	jQuery(document).ready(function ($) {
-		$.noConflict();
+<!--<script src="assets/js/eocjs-newsticker.min.js"></script>-->
+<!--<link rel="stylesheet" href="assets/css/eocjs-newsticker.css">-->
+<!--<script>-->
+<!--	jQuery(document).ready(function ($) {-->
+<!--		$.noConflict();-->
 
-		function getColumnIndex(sheetData, title) {
-			const titles = sheetData.map(sheet => sheet[0])
-			return titles.indexOf(title);
-		}
+<!--		function getColumnIndex(sheetData, title) {-->
+<!--			const titles = sheetData.map(sheet => sheet[0])-->
+<!--			return titles.indexOf(title);-->
+<!--		}-->
 
-		function transformData(data) {
-			let announcements = data[getColumnIndex(data, 'Announcements')].slice(1).filter(a => a.trim() !== '');
-			announcements = announcements.map((ann, i) => {
-				return `${i+1}/${announcements.length}: ${ann}`
-			})
+<!--		function transformData(data) {-->
+<!--			let announcements = data[getColumnIndex(data, 'Announcements')].slice(1).filter(a => a.trim() !== '');-->
+<!--			announcements = announcements.map((ann, i) => {-->
+<!--				return `${i+1}/${announcements.length}: ${ann}`-->
+<!--			})-->
 
-			return announcements;
-		}
+<!--			return announcements;-->
+<!--		}-->
 
-		let tickerShown = false;
-		function initTicker() {
-			const annEl = $("#announcements")
-			annEl.eocjsNewsticker({
-				type: 'dynamic',
-				divider: '—',
-				speed: 10,
-				interval: 1,
-				getContentArray: getAnnouncements,
-			});
-		}
+<!--		let tickerShown = false;-->
+<!--		function initTicker() {-->
+<!--			const annEl = $("#announcements")-->
+<!--			annEl.eocjsNewsticker({-->
+<!--				type: 'dynamic',-->
+<!--				divider: '—',-->
+<!--				speed: 10,-->
+<!--				interval: 1,-->
+<!--				getContentArray: getAnnouncements,-->
+<!--			});-->
+<!--		}-->
 
-		let announcements = [' '];
-		function getAnnouncements() {
-			const annEl = $("#announcements");
-			if (announcements.length === 0) {
-				annEl.animate({height: 0})
-				return [' ']
-			}
+<!--		let announcements = [' '];-->
+<!--		function getAnnouncements() {-->
+<!--			const annEl = $("#announcements");-->
+<!--			if (announcements.length === 0) {-->
+<!--				annEl.animate({height: 0})-->
+<!--				return [' ']-->
+<!--			}-->
 
-			annEl.animate({height: '1.2em'})
-			return announcements;
-		}
+<!--			annEl.animate({height: '1.2em'})-->
+<!--			return announcements;-->
+<!--		}-->
 
-		let updateDataTimeout = null;
-		function updateData() {
-			if(!$('#announcements').length) {
-				clearTimeout(updateDataTimeout)
-				return;
-			}
+<!--		let updateDataTimeout = null;-->
+<!--		function updateData() {-->
+<!--			if(!$('#announcements').length) {-->
+<!--				clearTimeout(updateDataTimeout)-->
+<!--				return;-->
+<!--			}-->
 
-			fetch('https://fotf3030.nl/api/timetable').then(res => {
-				try {
-					res.json().then(data => {
-						announcements = transformData(data)
-						if (!tickerShown) {
-							initTicker();
-							tickerShown = true;
-						}
-					})
-					updateDataTimeout = setTimeout(updateData, 5000)
-				} catch (err) {
-					console.error(err)
-					displayError()
-				}
-			}).catch(err => {
-				console.error(err)
-				displayError()
-			})
-		}
-		updateData()
+<!--			fetch('https://etds666.vercel.app/api/timetable').then(res => {-->
+<!--				try {-->
+<!--					res.json().then(data => {-->
+<!--						announcements = transformData(data)-->
+<!--						if (!tickerShown) {-->
+<!--							initTicker();-->
+<!--							tickerShown = true;-->
+<!--						}-->
+<!--					})-->
+<!--					updateDataTimeout = setTimeout(updateData, 5000)-->
+<!--				} catch (err) {-->
+<!--					console.error(err)-->
+<!--					displayError()-->
+<!--				}-->
+<!--			}).catch(err => {-->
+<!--				console.error(err)-->
+<!--				displayError()-->
+<!--			})-->
+<!--		}-->
+<!--		updateData()-->
 
-		function displayError() {
-			$("#announcements").fadeOut().promise.done(() => {
-				$("#error").fadeIn()
-			})
-		}
-	});
-</script>
+<!--		function displayError() {-->
+<!--			$("#announcements").fadeOut().promise.done(() => {-->
+<!--				$("#error").fadeIn()-->
+<!--			})-->
+<!--		}-->
+<!--	});-->
+<!--</script>-->
