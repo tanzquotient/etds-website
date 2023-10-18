@@ -313,7 +313,7 @@
 <script src="assets/js/words.js"></script>
 <script>
 	(function() {
-		let chosenWord; let guessedWords = [];let custom;let fullList;let currentRow = 0;let nextRowBlock = 0;let score = 0;let remNotification = 0;let gameFin = 0;let gameOn = 0;let maxBlock = 5;let level = 'custom';let difficulty = 'easy';let mustUse = '';let bestStreak = 0;let currentStreak = 0;let userScore = 0;let streakEasyCustom = 0; let scoreEasyCustom = 0;let scoreType = 'score';let scoreDiff = 'easy';
+		let chosenWord; let guessedWords = [];let custom;let fullList;let currentRow = 0;let nextRowBlock = 0;let score = 0;let remNotification = 0;let gameFin = 0;let gameOn = 0;let maxBlock = 7;let level = 'custom';let difficulty = 'easy';let mustUse = '';let bestStreak = 0;let currentStreak = 0;let userScore = 0;let streakEasyCustom = 0; let scoreEasyCustom = 0;let scoreType = 'score';let scoreDiff = 'easy';
 
 		const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
 
@@ -327,7 +327,7 @@
 			setGlobal();
 
 			custom = wordLists.custom;
-			fullList = wordLists.fullList;
+			fullList = wordLists.fullList.concat(custom);
 			gameStart()
 		}
 
@@ -723,9 +723,9 @@
 
 				let notification;
 				if (custom.length === guessedWords.length) {
-					notification = 'Wow! You have guessed all words in a row! Show this screen to Remy of the orga. If you are one of the first three, you get a free bottle of sparkling wine!';
+					notification = 'Wow! You have guessed all words in a row!';
 				} else {
-					notification = 'Well done, you won! Click to play again';
+					notification = `Well done, you won! ${custom.length - guessedWords.length} more to go! Click to play again`;
 				}
 
 				gameOver();

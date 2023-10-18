@@ -6,18 +6,29 @@
 		color: red;
 	}
 
-	/*#announcements {*/
-	/*	font-size: 1.5em;*/
-	/*	padding: 0 1em;*/
-	/*	overflow: hidden;*/
-	/*	padding: 3px;*/
-	/*	background: white;*/
-	/*	color: black;*/
-	/*}*/
+	#announcements {
+		font-size: 1.5em;
+		padding: 0 1em;
+		overflow: hidden;
+		color: #eeeeee;
+	}
 
-	/*#announcements a {*/
-	/*	color: var(--color-primary);*/
-	/*}*/
+	#announcements a {
+		color: var(--color-primary);
+	}
+
+    .blah {
+        display: none;
+    }
+
+	@media (min-width: 992px) {
+		#announcements {
+			display: none;
+		}
+		.blah {
+			display: block;
+		}
+	}
 
 	section.weekend {
 		position: absolute;
@@ -26,13 +37,18 @@
 		width: 100%;
 		height: calc(100% - 55px);
 		overflow: hidden scroll;
-		overscroll-behavior-y: contain;
 		z-index: 10;
 	}
 
 	.autoheight {
 		margin-top: -55px;
 	}
+
+    @media (min-width: 768px) {
+        .autoheight {
+            margin-top: 0;
+        }
+    }
 
 	footer {
 		display: none;
@@ -56,15 +72,15 @@
 		<div class="row">
 			<div class="col-lg-8 align-center">
 				<h1 class="section font-effect-fire-animation">Festival<br/>App</h1>
-<!--				<hr>-->
-<!--				<p>-->
-<!--					Important information will be displayed here!-->
-<!--				</p>-->
-<!--				<br>-->
-<!--				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>-->
-<!--				<div id="announcements">-->
-<!--					Loading...-->
-<!--				</div>-->
+				<hr>
+				<p class="blah">
+					Important information will be displayed here on phones!
+				</p>
+				<br>
+				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>
+				<div id="announcements">
+					Loading...
+				</div>
 			</div>
 		</div>
 		<hr>
@@ -87,7 +103,7 @@
 					<span>Heat lists</span>
 				</div>
 			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/blind-date" target="_blank" data-wow-duration="1s" data-wow-delay="0.3">
+			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/blind-date" data-wow-duration="1s" data-wow-delay="0.3">
 				<div class="button">
 					<div class="imageContainer"><img src="assets/img/weekend/bracelet.svg" alt="Blind date colors"></div>
 					<span>Blind date colors</span>
@@ -105,12 +121,12 @@
 					<span>Helper info</span>
 				</div>
 			</a>
-			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/map-venue" data-wow-duration="1s" data-wow-delay="0.3">
-				<div class="button">
-					<div class="imageContainer"><img src="assets/img/weekend/map.svg" alt="Festival Map"></div>
-					<span>Map of Hell</span>
-				</div>
-			</a>
+<!--			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/map-venue" data-wow-duration="1s" data-wow-delay="0.3">-->
+<!--				<div class="button">-->
+<!--					<div class="imageContainer"><img src="assets/img/weekend/map.svg" alt="Festival Map"></div>-->
+<!--					<span>Map of Hell</span>-->
+<!--				</div>-->
+<!--			</a>-->
 			<a class="buttonContainer col-xs-6 col-sm-4 col-md-3 wow animated fadeInDown" href="#/weekend/sleeping-halls" data-wow-duration="1s" data-wow-delay="0.3">
 				<div class="button">
 					<div class="imageContainer"><img src="assets/img/weekend/sleep.svg" alt="Sleeping halls"></div>
@@ -151,82 +167,82 @@
 	</div>
 </section>
 
-<!--<script src="assets/js/eocjs-newsticker.min.js"></script>-->
-<!--<link rel="stylesheet" href="assets/css/eocjs-newsticker.css">-->
-<!--<script>-->
-<!--	jQuery(document).ready(function ($) {-->
-<!--		$.noConflict();-->
+<script src="assets/js/eocjs-newsticker.min.js"></script>
+<link rel="stylesheet" href="assets/css/eocjs-newsticker.css">
+<script>
+	jQuery(document).ready(function ($) {
+		$.noConflict();
 
-<!--		function getColumnIndex(sheetData, title) {-->
-<!--			const titles = sheetData.map(sheet => sheet[0])-->
-<!--			return titles.indexOf(title);-->
-<!--		}-->
+		function getColumnIndex(sheetData, title) {
+			const titles = sheetData.map(sheet => sheet[0])
+			return titles.indexOf(title);
+		}
 
-<!--		function transformData(data) {-->
-<!--			let announcements = data[getColumnIndex(data, 'Announcements')].slice(1).filter(a => a.trim() !== '');-->
-<!--			announcements = announcements.map((ann, i) => {-->
-<!--				return `${i+1}/${announcements.length}: ${ann}`-->
-<!--			})-->
+		function transformData(data) {
+			let announcements = data[getColumnIndex(data, 'Announcements')].slice(1).filter(a => a.trim() !== '');
+			announcements = announcements.map((ann, i) => {
+				return `${i+1}/${announcements.length}: ${ann}`
+			})
 
-<!--			return announcements;-->
-<!--		}-->
+			return announcements;
+		}
 
-<!--		let tickerShown = false;-->
-<!--		function initTicker() {-->
-<!--			const annEl = $("#announcements")-->
-<!--			annEl.eocjsNewsticker({-->
-<!--				type: 'dynamic',-->
-<!--				divider: '—',-->
-<!--				speed: 10,-->
-<!--				interval: 1,-->
-<!--				getContentArray: getAnnouncements,-->
-<!--			});-->
-<!--		}-->
+		let tickerShown = false;
+		function initTicker() {
+			const annEl = $("#announcements")
+			annEl.eocjsNewsticker({
+				type: 'dynamic',
+				divider: '—',
+				speed: 10,
+				interval: 1,
+				getContentArray: getAnnouncements,
+			});
+		}
 
-<!--		let announcements = [' '];-->
-<!--		function getAnnouncements() {-->
-<!--			const annEl = $("#announcements");-->
-<!--			if (announcements.length === 0) {-->
-<!--				annEl.animate({height: 0})-->
-<!--				return [' ']-->
-<!--			}-->
+		let announcements = [' '];
+		function getAnnouncements() {
+			const annEl = $("#announcements");
+			if (announcements.length === 0) {
+				annEl.animate({height: 0})
+				return [' ']
+			}
 
-<!--			annEl.animate({height: '1.2em'})-->
-<!--			return announcements;-->
-<!--		}-->
+			annEl.animate({height: '1.2em'})
+			return announcements;
+		}
 
-<!--		let updateDataTimeout = null;-->
-<!--		function updateData() {-->
-<!--			if(!$('#announcements').length) {-->
-<!--				clearTimeout(updateDataTimeout)-->
-<!--				return;-->
-<!--			}-->
+		let updateDataTimeout = null;
+		function updateData() {
+			if(!$('#announcements').length) {
+				clearTimeout(updateDataTimeout)
+				return;
+			}
 
-<!--			fetch('https://etds666.vercel.app/api/timetable').then(res => {-->
-<!--				try {-->
-<!--					res.json().then(data => {-->
-<!--						announcements = transformData(data)-->
-<!--						if (!tickerShown) {-->
-<!--							initTicker();-->
-<!--							tickerShown = true;-->
-<!--						}-->
-<!--					})-->
-<!--					updateDataTimeout = setTimeout(updateData, 5000)-->
-<!--				} catch (err) {-->
-<!--					console.error(err)-->
-<!--					displayError()-->
-<!--				}-->
-<!--			}).catch(err => {-->
-<!--				console.error(err)-->
-<!--				displayError()-->
-<!--			})-->
-<!--		}-->
-<!--		updateData()-->
+			fetch('https://etds666.vercel.app/api/timetable').then(res => {
+				try {
+					res.json().then(data => {
+						announcements = transformData(data)
+						if (!tickerShown) {
+							initTicker();
+							tickerShown = true;
+						}
+					})
+					updateDataTimeout = setTimeout(updateData, 5000)
+				} catch (err) {
+					console.error(err)
+					displayError()
+				}
+			}).catch(err => {
+				console.error(err)
+				displayError()
+			})
+		}
+		updateData()
 
-<!--		function displayError() {-->
-<!--			$("#announcements").fadeOut().promise.done(() => {-->
-<!--				$("#error").fadeIn()-->
-<!--			})-->
-<!--		}-->
-<!--	});-->
-<!--</script>-->
+		function displayError() {
+			$("#announcements").fadeOut().promise.done(() => {
+				$("#error").fadeIn()
+			})
+		}
+	});
+</script>
