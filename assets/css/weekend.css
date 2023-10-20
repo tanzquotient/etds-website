@@ -108,13 +108,16 @@ a.buttonContainer {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 
-    -webkit-filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);
-    filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+
+    /*-webkit-filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);*/
+    /*filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);*/
 }
 
 .button:hover .imageContainer img {
-    -webkit-filter: contrast(30%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e) invert(100%);
-    filter: contrast(30%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e) invert(100%);
+    -webkit-filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);
+    filter: invert(100%) drop-shadow(0 1px 3px #fefcc9) drop-shadow(2px -3px 5px #feec85) drop-shadow(-3px -2px 6px #ffae34) drop-shadow(3px -6px 8px #ec760c) drop-shadow(-3px -9px 10px #cd4606) drop-shadow(0 -12px 12px #973716) drop-shadow(2px -14px 13px #451b0e);
 }
 
 section.weekend .normalColor .button .imageContainer img {
