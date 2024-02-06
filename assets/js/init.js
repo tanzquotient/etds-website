@@ -198,7 +198,7 @@ jQuery( document ).ready(function( $ ) {
 		});
 
 		// start the application
-		app.run('/#/weekend');
+		app.run('/');
 
 		function loadAfterPartial(page) {
 			ModalEffects.init();
