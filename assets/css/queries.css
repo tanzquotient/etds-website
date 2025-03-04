@@ -143,13 +143,6 @@
     .btn-effect-send:after {
         display: none;
     }
-
-    .home-bg {
-        animation: none;
-        -webkit-animation: none;
-        -ms-animation: none;
-        -o-animation: none;
-    }
 }
 
 @media screen and (max-width: 992px) {

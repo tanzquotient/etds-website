@@ -17,19 +17,6 @@
 		color: var(--color-primary);
 	}
 
-    .blah {
-        display: none;
-    }
-
-	@media (min-width: 992px) {
-		#announcements {
-			display: none;
-		}
-		.blah {
-			display: block;
-		}
-	}
-
 	section.weekend {
 		position: absolute;
 		top: 55px;
@@ -56,15 +43,6 @@
 </style>
 
 <section id="home" class="autoheight">
-<!--	&lt;!&ndash;LANDING VIDEO&ndash;&gt;-->
-<!--	&lt;!&ndash;	TODO: Lazy load videos&ndash;&gt;-->
-<!--	<video id="video" autoplay muted playsinline loop >-->
-<!--		<source src="assets/vid/hell.mp4" type="video/mp4">-->
-<!--		your browser does not support HTML5-->
-<!--	</video>-->
-<!--	&lt;!&ndash;/LANDING VIDEO&ndash;&gt;-->
-
-	<div class="home-bg"></div>
 </section>
 
 <section class="weekend text-center section-padding">
@@ -73,10 +51,6 @@
 			<div class="col-lg-8 align-center">
 				<h1 class="section font-effect-fire-animation">Festival<br/>App</h1>
 				<hr>
-				<p class="blah">
-					Important information will be displayed here on phones!
-				</p>
-				<br>
 				<p id="error">Something went wrong when trying to load the announcements. Please try again later by refreshing the page!</p>
 				<div id="announcements">
 					Loading...
