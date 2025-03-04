@@ -12,3 +12,6 @@ To run it, run `python3 -m http.server` in the repo root, then access it at http
 
 Note that simply opening the [index.html](index.html) does not work because then it would be served at `file://`, which puts some restrictions on web workers.
 That's why it needs to be served over `http://`.
+
+Note that for development, reloading the page may not work.
+Instead, close and re-open the tab.

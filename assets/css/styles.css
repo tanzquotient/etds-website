@@ -254,25 +254,13 @@ hr {
 /****************************/
 
 #home {
-    background: url('../img/backgrounds/video.jpg') no-repeat center center;
+    background: url('../img/backgrounds/home.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     position: relative;
     overflow: hidden;
-}
-
-.home-bg {
-    animation: none;
-    /*background: url("../img/other/bg_pattern.png") repeat scroll 0 0 rgba(33, 39, 57, 0.5);*/
-    background: rgba(33, 39, 57, 0.5);
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
 }
 
 .home-sign {
