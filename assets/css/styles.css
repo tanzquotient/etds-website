@@ -1751,10 +1751,6 @@ button.expand {
     position: relative;
 }
 
-.tournament-text {
-    padding-bottom: 15px;
-}
-
 .input-group {
     display: table !important;
 }
