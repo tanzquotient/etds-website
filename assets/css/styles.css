@@ -440,10 +440,6 @@ video {
     flex-grow: 1;
 }
 
-.corona-btn img {
-    filter: invert(14%) sepia(65%) saturate(5814%) hue-rotate(353deg) brightness(95%) contrast(112%) opacity(0.7);
-}
-
 .white-btn img {
     filter: invert(90%);
 }
