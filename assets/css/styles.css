@@ -97,7 +97,7 @@ a:focus {
 
 h1 {
     font-family: 'Bungee Regular', sans-serif;
-    color: #fff;
+    color: var(--color-primary);
     font-size: 3em;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -1848,15 +1848,6 @@ button.expand {
     letter-spacing: 0.2em;
     margin-top: 15px;
     text-transform: uppercase;
-}
-
-.contact-wrap {
-    background-color: #0c040f;
-    position: relative;
-}
-
-.contact-wrap h1 {
-    color: #ffffff;
 }
 
 .light-box {
