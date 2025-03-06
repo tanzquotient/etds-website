@@ -411,7 +411,7 @@ video {
 }
 
 .home-header-btn {
-    background: rgba(100, 100, 100, 0.4) !important;
+    background: rgba(100, 100, 100, 0.6) !important;
     border-radius: 1em !important;
     color: #363738;
     display: flex;
@@ -579,7 +579,7 @@ body {
     opacity: 0;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0 0 8px 0 rgba(229, 177, 7, 0.7);
+    box-shadow: 0 0 8px 0 #62c5ec;
     border-radius: 8px;
     z-index: 1;
 
