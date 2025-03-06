@@ -12,3 +12,8 @@ To run it, run `python3 -m http.server` in the repo root, then access it at http
 
 Note that simply opening the [index.html](index.html) does not work because then it would be served at `file://`, which puts some restrictions on web workers.
 That's why it needs to be served over `http://`.
+
+## License
+
+This project is licensed under [GPLv3-or-later](LICENSE).
+
