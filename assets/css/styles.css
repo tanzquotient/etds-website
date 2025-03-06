@@ -1424,9 +1424,9 @@ a {
     color: #141115;
     font-size: 1.2em;
     font-weight: 500;
-    height: 2.6em;
+    /*height: 2.6em;*/
     letter-spacing: 3px;
-    line-height: 2.6em;
+    /*line-height: 2.6em;*/
     margin: 0 0 1em;
     text-transform: uppercase;
 }
