@@ -579,7 +579,7 @@ body {
     opacity: 0;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0 0 8px 0 #62c5ec;
+    box-shadow: 0 0 8px 0 var(--color-primary);
     border-radius: 8px;
     z-index: 1;
 
