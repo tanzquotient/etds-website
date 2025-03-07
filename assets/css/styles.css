@@ -592,7 +592,7 @@ body {
     border-radius: 0;
     background-color: #0c040f;
 
-    box-shadow: 7px 0 5px -5px rgba(229, 177, 7, 1), -7px 0px 5px -5px rgba(229, 177, 7, 1);
+    box-shadow: 7px 0 5px -5px var(--color-primary), -7px 0px 5px -5px var(--color-primary);
 
 }
 
