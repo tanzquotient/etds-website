@@ -582,7 +582,7 @@ body {
     box-shadow: 0 0 8px 0 var(--color-primary);
     border-radius: 8px;
     z-index: 1;
-
+    background-color: var(--color-grey);
     transition: all 300ms;
 
     padding-bottom: 8px;
