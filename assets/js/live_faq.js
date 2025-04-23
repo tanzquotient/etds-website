@@ -15,6 +15,7 @@ jQuery(document).ready(async function ($) {
     function displayError() {
         $("#status").fadeOut().promise().done(() => {
             $("#error").fadeIn();
+            $(".status").fadeOut();
         });
     }
 
@@ -33,7 +34,7 @@ jQuery(document).ready(async function ($) {
             </div>`
         }
 
-        $(".status").fadeOut()
+        $(".status").fadeOut();
 
         const accordion = $('#faqAccordion')
         accordion.fadeOut().promise().done(() => {
