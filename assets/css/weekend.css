@@ -5,7 +5,7 @@
 
 #error {
     display: none;
-    color: red;
+    color: rgb(255, 150, 150);
 }
 
 #announcements {
@@ -13,6 +13,13 @@
     padding: 0 1em;
     overflow: hidden;
     color: #eeeeee;
+}
+
+/* For readability */
+.darkBackground{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5em;
+    border-radius: 0.5em;
 }
 
 .intro {
