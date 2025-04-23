@@ -1,10 +1,36 @@
 
+#announcements a {
+    color: var(--color-primary);
+}
+
+#error {
+    display: none;
+    color: red;
+}
+
+#announcements {
+    font-size: 1.5em;
+    padding: 0 1em;
+    overflow: hidden;
+    color: #eeeeee;
+}
+
 .intro {
     min-height: 90vh;
 }
 
 .intro img {
     padding-top: 0;
+}
+
+.autoheight {
+    margin-top: -55px;
+}
+
+@media (min-width: 768px) {
+    .autoheight {
+        margin-top: 0;
+    }
 }
 
 .centeredButtonContainer {
@@ -135,4 +161,18 @@ section.weekend .normalColor .button:hover .imageContainer img {
         height: 40px;
         width: 40px;
     }
+}
+
+section.weekend {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 55px);
+    overflow: hidden scroll;
+    z-index: 2;
+}
+
+footer {
+    display: none;
 }
