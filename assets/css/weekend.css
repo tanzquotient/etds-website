@@ -183,3 +183,14 @@ section.weekend {
 footer {
     display: none;
 }
+
+/* Weekend FAQ */
+
+.status {
+    margin-top: 3em;
+    position: relative;
+}
+
+#accordion a {
+    color: var(--color-primary);
+}
