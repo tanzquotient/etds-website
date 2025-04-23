@@ -13,9 +13,8 @@ jQuery(document).ready(async function ($) {
     /* UI Functions */
 
     function displayError() {
-        $("#status").fadeOut().promise().done(() => {
+        $(".status").fadeOut().promise().done(() => {
             $("#error").fadeIn();
-            $(".status").fadeOut();
         });
     }
 
