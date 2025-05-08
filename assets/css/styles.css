@@ -1973,3 +1973,19 @@ ul.legals li:last-child::after {
         aspect-ratio: 4 / 3;
     }
 }
+
+/************************************/
+/** Merchandise **/
+/************************************/
+
+.merch-imgs img {
+    max-height: 300px;
+    width: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .merch-imgs img {
+        max-height: 200px;
+        width: auto;
+    }
+}
