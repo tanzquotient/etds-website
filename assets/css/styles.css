@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "fire-effect.css";
+
 /* 	++++ Reset ++++
 	++++ Preloader ++++
 	++++ Home page ++++
@@ -20,10 +21,12 @@
     font-family: 'Bungee Regular';
     src: url('../fonts/Bungee-Regular.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Oswald';
     src: url('../fonts/Oswald-VariableFont_wght.ttf') format('truetype');
@@ -278,7 +281,7 @@ hr {
 .home-sign {
     position: absolute;
     z-index: 2;
-    right:0;
+    right: 0;
     bottom: -100px;
     max-height: 80vh;
 
@@ -374,7 +377,7 @@ video {
 
 .landing-test-pos .landing-text-center-container {
     display: block;
-    color:red;
+    color: red;
 }
 
 
@@ -411,9 +414,8 @@ video {
 }
 
 .home-header-btn {
-    background: rgba(100, 100, 100, 0.6) !important;
-    border-radius: 1em !important;
-    color: #363738;
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #fff !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -426,6 +428,14 @@ video {
     width: 300px;
     max-width: calc(50% - 10px);
     text-align: center;
+}
+
+.home-header-btn:focus, .home-header-btn:hover {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.home-header-btn:active {
+    background: rgba(0, 0, 0, 0.7) !important;
 }
 
 .home-header-btn::after {
@@ -493,10 +503,10 @@ video {
     -o-transform: translateZ(0);
     transform: translateZ(0);
 
-    -webkit-transform: translate3d(0,0,0);
-    -moz-transform: translate3d(0,0,0);
-    -o-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .scroll-header {
@@ -1039,53 +1049,39 @@ div.avatar {
 /*********************/
 
 .btn-effect {
-    background: linear-gradient(173deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
+    background: var(--color-primary);
     border: medium none;
-    color: #fff;
-    letter-spacing: 0.2em;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -ms-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    color: var(--color-dark);
     z-index: 1;
     cursor: pointer;
     position: relative;
+    padding: 12px;
+    margin: 12px;
+    border-radius: 12px;
 
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 100%;
+    max-width: 200px;
+}
+
+.btn-effect:hover, .btn-effect:focus {
+    background: var(--color-primary-hover);
+}
+
+.btn-effect:active {
+    background: var(--color-primary-active);
+}
+
+.btn-effect.light {
+    background: var(--color-white);
 }
 
 .pricing-wrap .btn-effect {
     background: none repeat scroll 0 0 #fff;
 }
-
-#get_directions.btn-effect{
-    background: linear-gradient(175deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
-    border: medium none;
-    color: #fff;
-    cursor: pointer;
-    height: 50px;
-    letter-spacing: 0.2em;
-    margin-bottom: 45px;
-    margin-top: 0;
-    position: relative;
-    transition: all 0.3s ease 0s;
-    width: 230px;
-    z-index: 1;
-}
-
-#get_directions.btn-effect i {
-    display: none;
-    font-size: 1.75em;
-}
-
-#get_directions.btn-effect:hover span {
-    display: none;
-}
-
-#get_directions.btn-effect:hover i {
-    display: block;
-}
-
 
 #program {
     background-color: #0c040f;
@@ -1690,45 +1686,6 @@ button.expand {
     top: 0;
     width: 100%;
     z-index: -1;
-}
-
-.help button,
-.intro button,
-.pricing button,
-.tournament button,
-.super-volunteer button,
-.contact button
-{
-    background: linear-gradient(173deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
-    border-radius: 20px;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9em;
-    letter-spacing: 0.1em;
-    padding: 12px;
-    position: relative;
-    text-transform: uppercase;
-    width: 100%;
-    max-width: 200px;
-    margin: 1em auto 0;
-}
-
-.help button:hover, .help button:active, .help button:focus,
-.intro button:hover, .intro button:active, .intro button:focus,
-.pricing button:hover, .pricing button:active, .pricing button:focus,
-.tournament button:hover, .tournament button:active, .tournament button:focus,
-.super-volunteer button:hover, .super-volunteer button:active, .super-volunteer button:focus,
-.contact button:hover, .contact button:active, .contact button:focus
-{
-    background: linear-gradient(355deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
-    opacity: 80%;
-    transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    color: #fff;
 }
 
 .notify-success #message {
