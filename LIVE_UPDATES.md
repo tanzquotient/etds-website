@@ -19,7 +19,7 @@ We access this Sheet in the web app via the
 1. Enable the Sheets API.
 1. Create API keys: one for prod, one for dev.
     a. Restrict the prod key to HTTP referrers of your website, e.g. `https://etds.ch/*`.
-       You may also need to allow-list `https://sheets.googleapis.com/* `.
+       You may also need to allow-list `https://sheets.googleapis.com/*`.
     a. Restrict BOTH keys to the Sheets API.
 1. Set the Share link of the Spreadsheet to "Anyone" and "Viewer" (read-only).
 
