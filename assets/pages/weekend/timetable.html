@@ -66,40 +66,27 @@
 			return titles.indexOf(title);
 		}
 
+		function getDataForDay(data, day) {
+			const textColumnIndex = getColumnIndex(data, day);
+			const timeColumnIndex = getColumnIndex(data, `Start ${day}`);
+
+			return data[textColumnIndex]
+				.map((el, i) => {
+					return {
+						activity: el,
+						time: data[timeColumnIndex][i]
+					}
+				})
+				.slice(1); // skip header row
+		}
+
 		function processSheetData(data) {
 			try {
-				const sheetData = data.map(column => column.slice(1))
-
-
-				const friday = sheetData[getColumnIndex(data, 'Friday')].map((el, i) => {
-					return {
-						activity: el,
-						time: sheetData[getColumnIndex(data, 'Start Friday')][i]
-					}
-				})
-
-				const saturday = sheetData[getColumnIndex(data, 'Saturday')].map((el, i) => {
-					return {
-						activity: el,
-						time: sheetData[getColumnIndex(data, 'Start Saturday')][i]
-					}
-				})
-
-				const sunday = sheetData[getColumnIndex(data, 'Sunday')].map((el, i) => {
-					return {
-						activity: el,
-						time: sheetData[getColumnIndex(data, 'Start Sunday')][i]
-					}
-				})
-
-				const monday = sheetData[getColumnIndex(data, 'Monday')].map((el, i) => {
-					return {
-						activity: el,
-						time: sheetData[getColumnIndex(data, 'Start Monday')][i]
-					}
-				})
-
-				return { friday, saturday, sunday, monday }
+				const friday = getDataForDay(data, "Friday");
+				const saturday = getDataForDay(data, "Saturday");
+				const sunday = getDataForDay(data, "Sunday");
+				const monday = getDataForDay(data, "Monday");
+				return { friday, saturday, sunday, monday };
 			} catch (e) {
 				throw new Error(`General error when processing sheet data: ${e}`)
 			}
@@ -202,6 +189,7 @@
 						tt.append('<div class="firstSpacer"></div>')
 					}
 
+					// Group similar entries together, separate everything else by some space
 					if (firstEntryPlaced && entry.activity.substr(0, 3) !== lastEntry?.activity?.substr(0, 3)) {
 						tt.append('<div class="spacer"></div>')
 					}
@@ -272,60 +260,68 @@
 			});
 		}
 
-
 		let activities = null;
 		let updateDataTimeout = null;
-		function updateData() {
-			if(!$('#timetableContainer').length) {
+
+		async function updateData() {
+			// Stop refreshing when the user navigates to a different page
+			if (!$('#timetableContainer').length) {
 				clearTimeout(updateDataTimeout)
 				return;
 			}
-			fetch('https://etds666.vercel.app/api/timetable').then(res => {
-				try {
-					res.json().then(data => {
-						const newActivities = processSheetData(data)
-						if (JSON.stringify(activities) !== JSON.stringify(newActivities)) {
-							activities = newActivities;
-							updateTimetable(activities, day, time)
-						} else {
 
-						}
-
-						if (getUrlVars()['presenter'] === 'true') {
-							announcements = transformAnnouncementData(data)
-							if (!tickerShown) {
-								initTicker();
-								tickerShown = true;
-							}
-						}
-					})
-					updateDataTimeout = setTimeout(updateData, 5000)
-				} catch (err) {
-					console.error(err)
-					displayError()
+			try {
+				let response = await fetch(timetableUrl);
+				if (!response.ok) {
+					throw response.status;
 				}
-			}).catch(err => {
-				console.error(err)
-				displayError()
-			})
+				let data = await response.json();
+
+				const newActivities = processSheetData(data.values);
+
+				if (JSON.stringify(activities) !== JSON.stringify(newActivities)) {
+					activities = newActivities;
+					updateTimetable(activities, day, time)
+				}
+
+				if (getUrlVars()['presenter'] === 'true') {
+					// FIXME: Load the announcements by reusing code from live_announcements.js
+					// announcements = transformAnnouncementData(data)
+					// if (!tickerShown) {
+					// 	initTicker();
+					// 	tickerShown = true;
+					// }
+				}
+
+				updateDataTimeout = setTimeout(updateData, 5_000);
+			} catch (err) {
+				console.error(err);
+				displayError();
+			}
 		}
 
-		let {day, time, timeWithS} = getCurrentDayTime()
+		/* Main */
+
+		// "Offline mode": update timetable even when no new data could be fetched
+		let {day, time, timeWithS} = getCurrentDayTime();
 		setInterval(() => {
 			const d = getCurrentDayTime()
 			day = d.day
 			time = d.time
 			timeWithS = d.timeWithS
 
-			if (d.now.getSeconds() === 0 && next.time === time) {
+			if (d.now.getSeconds() === 0 && next?.time === time) {
 				updateTimetable(activities, day, time);
 			}
-		}, 1000)
+		}, 1000);
 
-		updateData()
+		// Regularly fetch new timetable data from the API
+		updateData();
 
+		// Animate from the initial generic title to the current time.
+		// Reason: briefly show the page title for context, but later it is not needed.
 		setTimeout(() => {
-			displayCurrentTime()
-		}, 2000)
+			displayCurrentTime();
+		}, 2000);
 	});
 </script>
