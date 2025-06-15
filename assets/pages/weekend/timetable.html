@@ -156,7 +156,16 @@
 				let count = 1;
 
 				dayActivities.forEach((entry, index) => {
-					if ((new Date(`1/1/2000 ${entry.time}:00`) <= new Date(`1/1/2000 ${time}:00`))
+					const is_past = (new Date(`1/1/2000 ${entry.time}:00`) <= new Date(`1/1/2000 ${time}:00`));
+
+					// If now is null => the date is invalid => the comparison is false.
+					// But we only need this to be true once, because then "Now" gets rendered
+					// and "firstEntryPlaced" becomes true.
+					const is_preview_tomorrow = (new Date(`1/1/2000 ${entry.time}:00`) < new Date(`1/1/2000 ${now?.[0]?.time}:00`));
+
+					// Iterate over the first items that are in the past, to find the "Now" item
+					if (is_past
+						&& !is_preview_tomorrow
 						&& ['friday', 'saturday', 'sunday', 'monday'].includes(day)
 						&& !firstEntryPlaced
 					) {
