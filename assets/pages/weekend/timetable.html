@@ -8,7 +8,8 @@
 				<hr>
 				<div id="mainContent">
 					<p id="subtitle" class="col-lg-10 col-lg-offset-1">
-					This page is updated every 10 seconds. However, we all know things break. Always make sure to keep paying attention to the presenter just in case!
+					This page is updated every 10 seconds. However, we all know things break.
+					Always pay attention to the presenter!
 					</p>
 					<br>
 					<div class="status col-lg-10 col-lg-offset-1"></div>
@@ -77,7 +78,8 @@
 						time: data[timeColumnIndex][i]
 					}
 				})
-				.slice(1); // skip header row
+				.slice(1) // skip header row
+				.filter(ele => ele.activity != "");
 		}
 
 		function processSheetData(data) {
@@ -144,14 +146,15 @@
 			const tt = $("#timetableContainer");
 			tt.fadeOut().promise().done(() => {
 				tt.empty();
-				$("#error").fadeOut()
+				$("#error").fadeOut();
 
-				const dayActivities = activities[day] || activities['friday']
+				const dayActivities = activities[day] || activities['friday'];
 
 				let lastEntry = null;
 				let firstEntryPlaced = false;
 				let now = null;
 				let count = 1;
+
 				dayActivities.forEach((entry, index) => {
 					if ((new Date(`1/1/2000 ${entry.time}:00`) <= new Date(`1/1/2000 ${time}:00`))
 						&& ['friday', 'saturday', 'sunday', 'monday'].includes(day)
