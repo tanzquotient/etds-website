@@ -8,7 +8,7 @@ The website is a fork of [the website](https://github.com/RomanovX/ETDS666) of t
 
 This is a static website.
 
-To run it, run `python3 -m http.server` in the repo root, then access it at http://localhost:8000/.
+To run it, run `python3 -m http.server` in the repo root, then access it at <http://localhost:8000/>.
 
 Note that simply opening the [index.html](index.html) does not work because then it would
 be served at `file://`, which puts some restrictions on web workers.
