@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lost &amp; Found - ETDS Zürich 2025</title>
+
+<script language="javascript">
+    function loadImg()
+    {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		var img_id = urlParams.get('img');
+		var x = urlParams.get('x');
+		var y = urlParams.get('y');
+		var item = urlParams.get('item');
+		if (item !== null) {
+			const item_array = item.split("_");
+			img_id = item_array[0];
+			x = item_array[1];
+			y = item_array[2];
+		}
+		else
+		{
+			item = img_id + "_" + x + "_" + y;
+		}
+		const x_trans = parseInt(x) - 7;
+		const y_trans = parseInt(y) + 50 - 7;
+		document.getElementById("img_id").value = img_id;
+		pos = "position:absolute; left:" + x_trans + "px; top: " + y_trans + "px;";
+		document.getElementById("cursor").style = pos;
+		document.getElementById("canvas").src = "/assets/img/lost-found/" + img_id + ".jpeg";
+		if (x != null)
+		{
+			claim_code = img_id + "_" + x + "_" + y;
+			document.getElementById("claim_code").value = claim_code;
+			document.getElementById("claim_form").action = "mailto:etds@tanzquotient.org?subject=Lost%20and%20Found&body=" +
+				encodeURI("I have lost the following item:\n\n" +
+				location.protocol + '//' + location.host + location.pathname + "?item=" + item + "\n\n" + 
+				"Below, I make a suggestion how I could get it back."			
+				);
+		}
+	}
+</script>
+
+</head>
+<body onload="loadImg()">
+<form id="claim_form" action="" method="post" enctype="text/plain">
+Selected item: <input size="50" id="claim_code" value="Click on the picture to claim an item.">
+<input type="submit" value="Claim this item">
+&nbsp; <a href="/#/lost-found">Lost &amp; Found Overview</a>
+</form>
+<form action="." method="GET">
+	<input type="hidden" id="img_id" name="img" value="">
+	<input type="image" id="canvas" src="" style="position:absolute; left:0px; top:50px;">
+</form>
+<div id="cursor">
+	<div style="width:8px;height:8px; background-color: blue; border:solid white 3px;"></div>
+</div>
+
+</body>
+</html>
