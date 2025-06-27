@@ -40,7 +40,8 @@
 			//	 "Below, I make a suggestion how I could get it back."
 			//	 );
 			// if we want to do it via google forms
-			document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' + location.host + location.pathname + "?item=" + item);
+			document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' +
+				location.host + location.pathname + "?img=" + img_id + "&x=" + x + "&y=" + y);
 		}
 	}
 </script>
@@ -69,7 +70,7 @@ Selected item: <input size="50" id="claim_code" value="Click on the picture to c
 	<input type="image" id="canvas" src="" style="position:absolute; left:0px; top:50px;">
 </form>
 <div id="cursor">
-	<div style="width:8px;height:8px; background-color: blue; border:solid white 3px;"></div>
+	<div style="width:32px;height:32px; background-color: orange; border:solid red 5px; border-radius: 50px;"></div>
 </div>
 
 </body>
