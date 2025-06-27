@@ -33,20 +33,35 @@
 		{
 			claim_code = img_id + "_" + x + "_" + y;
 			document.getElementById("claim_code").value = claim_code;
-			document.getElementById("claim_form").action = "mailto:etds@tanzquotient.org?subject=Lost%20and%20Found&body=" +
-				encodeURI("I have lost the following item:\n\n" +
-				location.protocol + '//' + location.host + location.pathname + "?item=" + item + "\n\n" + 
-				"Below, I make a suggestion how I could get it back."			
-				);
+			// if we want to do it via email
+			// document.getElementById("claim_form").action = "mailto:etds@tanzquotient.org?subject=Lost%20and%20Found&body=" +
+			//	 encodeURI("I have lost the following item:\n\n" +
+			//	 location.protocol + '//' + location.host + location.pathname + "?item=" + item + "\n\n" +
+			//	 "Below, I make a suggestion how I could get it back."
+			//	 );
+			// if we want to do it via google forms
+			document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' + location.host + location.pathname + "?item=" + item);
 		}
 	}
 </script>
 
 </head>
 <body onload="loadImg()">
-<form id="claim_form" action="" method="post" enctype="text/plain">
+<!-- if using the mail form, use the form tag below with empty action and remove
+ the hidden input type with id entry... below;
+ the hidden input type for google form is necessary because we cannot use the
+ POST method for google forms and with GET, the query parameter of the form
+ action would be overwritten, according to specification: RFC1866, page 46;
+ HTML 4.x section 17.13.3. ...
+ the name and id of the hidden input type can be figured out using network
+ analysis ("F12") when submitting the google form in the browser.
+<form id="claim_form" action="" method="GET" target="_blank" enctype="text/plain">
+-->
+<form id="claim_form" action="https://docs.google.com/forms/d/e/1FAIpQLSeW49dmsQM4kBN9bzfGxUsrVetOeZW0sp79fHTA6-XKbnzn9g/viewform"
+	method="GET" target="_blank" enctype="text/plain">
 Selected item: <input size="50" id="claim_code" value="Click on the picture to claim an item.">
 <input type="submit" value="Claim this item">
+<input type="hidden" name="entry.1487141201" id="entry.1487141201" value="">
 &nbsp; <a href="/#/lost-found">Lost &amp; Found Overview</a>
 </form>
 <form action="." method="GET">
