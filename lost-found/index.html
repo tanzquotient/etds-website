@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Lost &amp; Found - ETDS Zürich 2025</title>
 
+	<link href="lost-found.css" rel="stylesheet">
+
 	<script language="javascript">
 		function loadImg() {
 			const queryString = window.location.search;
@@ -25,9 +27,10 @@
 			const x_trans = parseInt(x) - 7;
 			const y_trans = parseInt(y) + 50 - 7;
 			document.getElementById("img_id").value = img_id;
-			pos = "position:absolute; left:" + x_trans + "px; top: " + y_trans + "px;";
+			pos = "left:" + x_trans + "px; top: " + y_trans + "px;";
 			document.getElementById("cursor").style = pos;
 			document.getElementById("canvas").src = "/assets/img/lost-found/" + img_id + ".jpeg";
+
 			if (x != null) {
 				claim_code = img_id + "_" + x + "_" + y;
 				document.getElementById("claim_code").value = claim_code;
@@ -67,11 +70,10 @@
 	</form>
 	<form action="." method="GET">
 		<input type="hidden" id="img_id" name="img" value="">
-		<input type="image" id="canvas" src="" style="position:absolute; left:0px; top:50px;">
+		<input type="image" id="canvas" src="">
 	</form>
-	<div id="cursor">
-		<div style="width:32px;height:32px; background-color: orange; border:solid red 5px; border-radius: 50px;"></div>
-	</div>
+
+	<div id="cursor"></div>
 
 </body>
 
