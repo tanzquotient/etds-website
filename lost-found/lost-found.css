@@ -1,0 +1,14 @@
+#canvas {
+    position: absolute;
+    left: 0px;
+    top: 50px;
+}
+
+#cursor {
+    position:absolute;
+    width: 32px;
+    height: 32px;
+    background-color: orange;
+    border: solid red 5px;
+    border-radius: 50px;
+}
