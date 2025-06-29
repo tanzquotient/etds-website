@@ -12,19 +12,9 @@
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 
-			var img_id = urlParams.get('img');
-			var x = urlParams.get('x');
-			var y = urlParams.get('y');
-			var item = urlParams.get('item');
-
-			if (item !== null) {
-				const item_array = item.split("_");
-				img_id = item_array[0];
-				x = item_array[1];
-				y = item_array[2];
-			} else {
-				item = img_id + "_" + x + "_" + y;
-			}
+			const img_id = urlParams.get('img');
+			const x = urlParams.get('x');
+			const y = urlParams.get('y');
 
 			// The point where the user clicked
 			// Offsets:
@@ -52,8 +42,7 @@
 				//	 );
 
 				// if we want to do it via google forms
-				document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' +
-					location.host + location.pathname + "?img=" + img_id + "&x=" + x + "&y=" + y);
+				document.getElementById("entry.1487141201").value = location.toString();
 			}
 		}
 	</script>
