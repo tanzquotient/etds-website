@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lost &amp; Found - ETDS Zürich 2025</title>
+	<title>Lost &amp; Found - ETDS Zürich 2025</title>
 
-<script language="javascript">
-    function loadImg()
-    {
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		var img_id = urlParams.get('img');
-		var x = urlParams.get('x');
-		var y = urlParams.get('y');
-		var item = urlParams.get('item');
-		if (item !== null) {
-			const item_array = item.split("_");
-			img_id = item_array[0];
-			x = item_array[1];
-			y = item_array[2];
+	<script language="javascript">
+		function loadImg() {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			var img_id = urlParams.get('img');
+			var x = urlParams.get('x');
+			var y = urlParams.get('y');
+			var item = urlParams.get('item');
+			if (item !== null) {
+				const item_array = item.split("_");
+				img_id = item_array[0];
+				x = item_array[1];
+				y = item_array[2];
+			}
+			else {
+				item = img_id + "_" + x + "_" + y;
+			}
+			const x_trans = parseInt(x) - 7;
+			const y_trans = parseInt(y) + 50 - 7;
+			document.getElementById("img_id").value = img_id;
+			pos = "position:absolute; left:" + x_trans + "px; top: " + y_trans + "px;";
+			document.getElementById("cursor").style = pos;
+			document.getElementById("canvas").src = "/assets/img/lost-found/" + img_id + ".jpeg";
+			if (x != null) {
+				claim_code = img_id + "_" + x + "_" + y;
+				document.getElementById("claim_code").value = claim_code;
+				// if we want to do it via email
+				// document.getElementById("claim_form").action = "mailto:etds@tanzquotient.org?subject=Lost%20and%20Found&body=" +
+				//	 encodeURI("I have lost the following item:\n\n" +
+				//	 location.protocol + '//' + location.host + location.pathname + "?item=" + item + "\n\n" +
+				//	 "Below, I make a suggestion how I could get it back."
+				//	 );
+				// if we want to do it via google forms
+				document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' +
+					location.host + location.pathname + "?img=" + img_id + "&x=" + x + "&y=" + y);
+			}
 		}
-		else
-		{
-			item = img_id + "_" + x + "_" + y;
-		}
-		const x_trans = parseInt(x) - 7;
-		const y_trans = parseInt(y) + 50 - 7;
-		document.getElementById("img_id").value = img_id;
-		pos = "position:absolute; left:" + x_trans + "px; top: " + y_trans + "px;";
-		document.getElementById("cursor").style = pos;
-		document.getElementById("canvas").src = "/assets/img/lost-found/" + img_id + ".jpeg";
-		if (x != null)
-		{
-			claim_code = img_id + "_" + x + "_" + y;
-			document.getElementById("claim_code").value = claim_code;
-			// if we want to do it via email
-			// document.getElementById("claim_form").action = "mailto:etds@tanzquotient.org?subject=Lost%20and%20Found&body=" +
-			//	 encodeURI("I have lost the following item:\n\n" +
-			//	 location.protocol + '//' + location.host + location.pathname + "?item=" + item + "\n\n" +
-			//	 "Below, I make a suggestion how I could get it back."
-			//	 );
-			// if we want to do it via google forms
-			document.getElementById("entry.1487141201").value = encodeURI(location.protocol + '//' +
-				location.host + location.pathname + "?img=" + img_id + "&x=" + x + "&y=" + y);
-		}
-	}
-</script>
+	</script>
 
 </head>
+
 <body onload="loadImg()">
-<!-- if using the mail form, use the form tag below with empty action and remove
+	<!-- if using the mail form, use the form tag below with empty action and remove
  the hidden input type with id entry... below;
  the hidden input type for google form is necessary because we cannot use the
  POST method for google forms and with GET, the query parameter of the form
@@ -58,20 +57,22 @@
  analysis ("F12") when submitting the google form in the browser.
 <form id="claim_form" action="" method="GET" target="_blank" enctype="text/plain">
 -->
-<form id="claim_form" action="https://docs.google.com/forms/d/e/1FAIpQLSeW49dmsQM4kBN9bzfGxUsrVetOeZW0sp79fHTA6-XKbnzn9g/viewform"
-	method="GET" target="_blank" enctype="text/plain">
-Selected item: <input size="50" id="claim_code" value="Click on the picture to claim an item.">
-<input type="submit" value="Claim this item">
-<input type="hidden" name="entry.1487141201" id="entry.1487141201" value="">
-&nbsp; <a href="/#/lost-found">Lost &amp; Found Overview</a>
-</form>
-<form action="." method="GET">
-	<input type="hidden" id="img_id" name="img" value="">
-	<input type="image" id="canvas" src="" style="position:absolute; left:0px; top:50px;">
-</form>
-<div id="cursor">
-	<div style="width:32px;height:32px; background-color: orange; border:solid red 5px; border-radius: 50px;"></div>
-</div>
+	<form id="claim_form"
+		action="https://docs.google.com/forms/d/e/1FAIpQLSeW49dmsQM4kBN9bzfGxUsrVetOeZW0sp79fHTA6-XKbnzn9g/viewform"
+		method="GET" target="_blank" enctype="text/plain">
+		Selected item: <input size="50" id="claim_code" value="Click on the picture to claim an item.">
+		<input type="submit" value="Claim this item">
+		<input type="hidden" name="entry.1487141201" id="entry.1487141201" value="">
+		&nbsp; <a href="/#/lost-found">Lost &amp; Found Overview</a>
+	</form>
+	<form action="." method="GET">
+		<input type="hidden" id="img_id" name="img" value="">
+		<input type="image" id="canvas" src="" style="position:absolute; left:0px; top:50px;">
+	</form>
+	<div id="cursor">
+		<div style="width:32px;height:32px; background-color: orange; border:solid red 5px; border-radius: 50px;"></div>
+	</div>
 
 </body>
+
 </html>
