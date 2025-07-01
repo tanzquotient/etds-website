@@ -28,3 +28,10 @@ and inject it into the DOM, replacing what is already there (see `this.partial(.
 Note that this injection means that any `<script>` contained in the HTML snippets
 will be re-run as the user navigates around the app!
 So in order to avoid re-definitions, global variables/functions should be placed directly in `index.html`.
+
+## Copyright
+
+Copyright © 2025 Remy Kabel, Thore Göbel, Burkhard Ringlein, ETDS community. All rights reserved. 
+
+If you want to use this website as template (esp. if you want to host an ETDS :) ), please contact us.
+
