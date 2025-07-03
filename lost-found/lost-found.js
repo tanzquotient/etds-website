@@ -11,6 +11,8 @@ function loadImg() {
     // The point where the user clicked
     // Offsets:
     // - Fixed offset from the top of top of the page.
+    //     - However, on small screens (small phones) the explanatory text produces to much line breaks
+    //     - Hence, we increase the offset if the screen.width is below 400
     // - Center cursor (default is top left)
     var offset = 170 + Math.max(400 - screen.width, 0)
     document.getElementById("canvas").style = "top: " + offset + "px; position: absolute; left: 0px;"
