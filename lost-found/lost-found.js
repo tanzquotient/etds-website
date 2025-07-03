@@ -13,7 +13,7 @@ function loadImg() {
     // - Fixed offset from the top of top of the page.
     // - Center cursor (default is top left)
     var offset = 170 + Math.max(400 - screen.width, 0)
-    document.getElementById("canvas").style = "top: " + offset + "px; position: absolute; left: 0px; width: 100%;"
+    document.getElementById("canvas").style = "top: " + offset + "px; position: absolute; left: 0px;"
     const x_trans = parseInt(x) - 25;
     const y_trans = parseInt(y) + offset - 25;
 
