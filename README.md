@@ -31,7 +31,8 @@ So in order to avoid re-definitions, global variables/functions should be placed
 
 ## Copyright
 
-Copyright © 2025 Remy Kabel, Thore Göbel, Burkhard Ringlein, ETDS community. All rights reserved. 
+Copyright Remy Kabel, Daniel Reus, Thore Göbel, Burkhard Ringlein, and the ETDS community.
+All rights reserved. 
 
 If you want to use this website as template (esp. if you want to host an ETDS :) ), please contact us.
 
