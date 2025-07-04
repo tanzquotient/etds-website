@@ -4,23 +4,30 @@ function loadImg() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
+    const cursor = document.getElementById("cursor");
+    const canvas = document.getElementById("canvas");
+
     const img_id = urlParams.get('img');
     const x = urlParams.get('x');
     const y = urlParams.get('y');
 
+    const canvas_rect = canvas.getBoundingClientRect();
+    const canvas_x = canvas_rect.left + window.scrollX;
+    const canvas_y = canvas_rect.top + window.scrollY;
+    // console.log(`canvas_x: ${canvas_x} canvas_y: ${canvas_y}`);
+
     // The point where the user clicked
-    // Offsets:
-    // - Fixed offset from the top of top of the page.
-    // - Center cursor (default is top left)
-    const x_trans = parseInt(x) - 25;
-    const y_trans = parseInt(y) + 170 - 25;
+    const cursor_radius = 16;
+    const cursor_x = parseInt(x) - cursor_radius + canvas_x;
+    const cursor_y = parseInt(y) - cursor_radius + canvas_y;
+    // console.log(`cursor_x: ${cursor_x} cursor_y: ${cursor_y}`);
+
+    cursor.style.left = `${cursor_x}px`;
+    cursor.style.top = `${cursor_y}px`;
+
+    canvas.src = "/assets/img/lost-found/" + img_id + ".jpeg";
 
     document.getElementById("img_id").value = img_id;
-
-    pos = "left:" + x_trans + "px; top: " + y_trans + "px;";
-    document.getElementById("cursor").style = pos;
-
-    document.getElementById("canvas").src = "/assets/img/lost-found/" + img_id + ".jpeg";
 
     if (x != null) {
         claim_code = img_id + "_" + x + "_" + y;

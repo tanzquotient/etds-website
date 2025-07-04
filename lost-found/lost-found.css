@@ -1,12 +1,9 @@
 #canvas {
-    position: absolute;
-    left: 0px;
-    top: 170px;
-    width: 100%;
+    margin: 16px;
 }
 
 #cursor {
-    position:absolute;
+    position: absolute;
     width: 32px;
     height: 32px;
     background-color: orange;
